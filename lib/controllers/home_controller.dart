@@ -39,13 +39,11 @@ class HomeController extends GetxController {
       upgrades[key].itemCount += buyCount.value;
       money.value -= upgrades[key].price;
       passive.value += upgrades[key].itemProfit * buyCount.value;
-
-      upgrades[key].price = upgrades[key].initialPrice * pow(1.1, upgrades[key].itemCount);
-
-
+      syncPrices();
       refreshUpgrades();
     }
   }
+
   void buyPlanetUpgrade(int key) {
     if (money.value >= upgrades[key].price) {
       money.value -= planetUpgrades[key].price;
@@ -66,9 +64,11 @@ class HomeController extends GetxController {
     changeProgress();
   }
 
-  @override
-  void onInit() {
-    Timer.periodic(
+  Timer? timer;
+
+  void startTimer() {
+    timer?.cancel();
+    timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
         if (progress.value < 1.0) {
@@ -86,6 +86,15 @@ class HomeController extends GetxController {
         }
       },
     );
+  }
+
+  void stopTimer() {
+    timer?.cancel();
+  }
+
+  @override
+  void onInit() {
+    startTimer();
 
     ever(money, (_) {
       refreshUpgrades();
@@ -93,15 +102,19 @@ class HomeController extends GetxController {
     });
 
     ever(buyCount, (_) {
-      for (final upgrade in upgrades) {
-        upgrade.price = 0;
-        for(int i = 0; i < buyCount.value+upgrade.itemCount;i++) {
-          upgrade.price += upgrade.initialPrice * pow(1.1, i);
-        }
-      }
+      syncPrices();
       refreshUpgrades();
     });
     super.onInit();
+  }
+
+  void syncPrices() {
+    for (final upgrade in upgrades) {
+      upgrade.price = 0;
+      for (int i = 0; i < buyCount.value + upgrade.itemCount; i++) {
+        upgrade.price += upgrade.initialPrice * pow(1.1, i);
+      }
+    }
   }
 
   void refreshUpgrades() {
@@ -114,6 +127,7 @@ class HomeController extends GetxController {
     }
     upgrades.refresh();
   }
+
   void refreshPlanetUpgrades() {
     for (final upgrade in planetUpgrades) {
       if (money.value >= upgrade.price) {

@@ -11,6 +11,7 @@ const subCardColor = Color.fromARGB(255, 131, 164, 134);
 const cardTitleColor = Color(0xff628c36);
 const cardButtonColor = Color.fromARGB(255, 163, 150, 15);
 const moneyCircleColor = Color.fromARGB(255, 214, 214, 214);
+const goBackIcon = Icon(Icons.arrow_back_ios, size: 30, color: moneyCircleColor);
 const upgradeIcon = Icon(Icons.settings, size: 50, color: moneyCircleColor);
 const rocketIcon = Icon(Icons.rocket_launch_outlined, size: 50, color: moneyCircleColor);
 const boostIcon = Icon(Icons.double_arrow, size: 50, color: moneyCircleColor);
