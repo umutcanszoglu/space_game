@@ -20,4 +20,6 @@ class Upgrade {
     required this.itemCount,
     required this.isAvailable,
   }) : initialPrice = price;
+
+  double get passive => itemCount * itemProfit;
 }

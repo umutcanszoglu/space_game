@@ -17,7 +17,6 @@ class HomeController extends GetxController {
   final upgrades = Upgrades.upgrades.obs;
   final planets = Planets.planets.obs;
   final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
-  final passive = 0.10.obs;
   final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
   final buyCount = 1.obs;
@@ -27,7 +26,12 @@ class HomeController extends GetxController {
   }
 
   void passiveIncreaseMoney() {
-    money.value += passive.value;
+    //money.value += passive.value;
+    double increase = 0;
+    for (final upgrade in upgrades) {
+      increase += upgrade.itemProfit * upgrade.itemCount;
+    }
+    money.value += increase;
   }
 
   // void addUpgrade() {
@@ -38,17 +42,17 @@ class HomeController extends GetxController {
     if (money.value >= upgrades[key].price) {
       upgrades[key].itemCount += buyCount.value;
       money.value -= upgrades[key].price;
-      passive.value += upgrades[key].itemProfit * buyCount.value;
       syncPrices();
       refreshUpgrades();
     }
   }
 
   void buyPlanetUpgrade(int key) {
-    if (money.value >= upgrades[key].price) {
+    if (money.value >= planetUpgrades[key].price) {
       money.value -= planetUpgrades[key].price;
       upgrades[key].itemProfit *= 2;
       refreshPlanetUpgrades();
+      refreshUpgrades();
     }
   }
 
@@ -68,24 +72,19 @@ class HomeController extends GetxController {
 
   void startTimer() {
     timer?.cancel();
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        if (progress.value < 1.0) {
-          passiveProgress();
-          passiveIncreaseMoney();
-        } else if (progress.value >= 0.93) {
-          if (planetChanger.value > 2) {
-            planetChanger.value = 0;
-          }
-          planetChanger.value += 1;
-          progress.value = 0;
-          Get.to(const UpgradePage());
-        } else {
-          timer.cancel();
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (progress.value < 1.0) {
+        passiveProgress();
+        passiveIncreaseMoney();
+      } else if (progress.value >= 0.93) {
+        if (planetChanger.value > 2) {
+          planetChanger.value = 0;
         }
-      },
-    );
+        planetChanger.value += 1;
+        progress.value = 0;
+        Get.to(const UpgradePage());
+      }
+    });
   }
 
   void stopTimer() {
@@ -137,6 +136,7 @@ class HomeController extends GetxController {
       }
     }
     planetUpgrades.refresh();
+    upgrades.refresh();
   }
 
   void changeProgress() {
