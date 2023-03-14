@@ -54,8 +54,8 @@ class HomeController extends GetxController {
   }
 
   void boost() {
-    progress.value = min(1, progress.value + 0.05);
-    money.value += 1000000000;
+    progress.value = min(1, progress.value + 0.04);
+    money.value += 250;
   }
 
   void resizeRocket() async {
