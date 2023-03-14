@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space_game/utils/animated.dart';
+import 'package:space_game/utils/extensions.dart';
 
 import '../const/const.dart';
 
@@ -30,7 +31,7 @@ class MoneyCard extends StatelessWidget {
                 value: money,
                 duration: const Duration(milliseconds: 500),
                 builder: (context, child, animation) => Text(
-                  animation.value.toStringAsFixed(1),
+                  animation.value.doubleFormatter,
                   style: const TextStyle(
                     color: niceBlackColor,
                     fontSize: 22,

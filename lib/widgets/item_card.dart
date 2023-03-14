@@ -104,13 +104,11 @@ class ItemCard extends GetView<HomeController> {
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
-                  Obx(
-                    () => Text(
-                      (item.price * controller.buyCount.value).doubleFormatter,
+                  Text(
+                      item.price.doubleFormatter,
                       style: const TextStyle(
                           color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                  ),
                 ],
               ),
             ),

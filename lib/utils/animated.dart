@@ -10,7 +10,7 @@ class Animated extends StatefulWidget {
   final Widget Function(
     BuildContext context,
     Widget? child,
-    Animation animation,
+    Animation<double> animation,
   ) builder;
 
   const Animated({

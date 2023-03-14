@@ -39,8 +39,9 @@ class HomeController extends GetxController {
       upgrades[key].itemCount += buyCount.value;
       money.value -= upgrades[key].price;
       passive.value += upgrades[key].itemProfit * buyCount.value;
-      upgrades[key].price = upgrades[key].initialPrice * buyCount.value +
-          pow(upgrades[key].itemCount + buyCount.value - 1, 3);
+
+      upgrades[key].price = upgrades[key].initialPrice * pow(1.1, upgrades[key].itemCount);
+
 
       refreshUpgrades();
     }
@@ -93,8 +94,10 @@ class HomeController extends GetxController {
 
     ever(buyCount, (_) {
       for (final upgrade in upgrades) {
-        upgrade.price =
-            upgrade.initialPrice * buyCount.value + pow(upgrade.itemCount + buyCount.value - 1, 3);
+        upgrade.price = 0;
+        for(int i = 0; i < buyCount.value+upgrade.itemCount;i++) {
+          upgrade.price += upgrade.initialPrice * pow(1.1, i);
+        }
       }
       refreshUpgrades();
     });
@@ -103,7 +106,7 @@ class HomeController extends GetxController {
 
   void refreshUpgrades() {
     for (final upgrade in upgrades) {
-      if (money.value / buyCount.value >= upgrade.price) {
+      if (money.value >= upgrade.price) {
         upgrade.isAvailable = true;
       } else {
         upgrade.isAvailable = false;
