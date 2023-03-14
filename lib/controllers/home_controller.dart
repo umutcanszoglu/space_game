@@ -23,16 +23,16 @@ class HomeController extends GetxController {
   final buyCount = 1.obs;
 
   void increaseMoney() {
-    money.value += 50;
+    money.value += 5;
   }
 
   void passiveIncreaseMoney() {
     money.value += passive.value;
   }
 
-  void addUpgrade() {
-    upgrades.insert(0, Upgrades.upgrades.first);
-  }
+  // void addUpgrade() {
+  //   upgrades.insert(0, Upgrades.upgrades.first);
+  // }
 
   void buyUpgrade(int key) {
     if (money.value >= upgrades[key].price) {
@@ -55,7 +55,7 @@ class HomeController extends GetxController {
   }
 
   void boost() {
-    progress.value = min(1, progress.value + 0.04);
+    progress.value = min(1, progress.value + 0.01);
     money.value += 250;
   }
 
@@ -126,10 +126,10 @@ class HomeController extends GetxController {
   }
 
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.01);
+    progress.value = min(1, progress.value + 0.0001);
   }
 
   void passiveProgress() {
-    progress.value = min(1, progress.value + 0.01);
+    progress.value = min(1, progress.value + 0.00001);
   }
 }
