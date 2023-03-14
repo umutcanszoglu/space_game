@@ -53,7 +53,7 @@ class HomeController extends GetxController {
   }
 
   void boost() {
-    progress.value = min(1, progress.value + 0.01);
+    progress.value = min(1, progress.value + 0.1);
     money.value += 250;
   }
 

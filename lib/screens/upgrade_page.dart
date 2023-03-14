@@ -26,41 +26,34 @@ class UpgradePage extends StatelessWidget {
                     width: 50,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: subCardColor,
+                      color: moneyCircleColor,
                     ),
                     child: IconButton(onPressed: () => Get.back(), icon: goBackIcon),
                   ),
                   const SizedBox(width: 30),
-                  const Text(
-                    "Upgrades",
-                    style: TextStyle(
-                      color: moneyCircleColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Expanded(child: MoneyCard(money: controller.money.value)),
+                  Expanded(child: Obx(() => MoneyCard(money: controller.money.value))),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 32),
               Expanded(
-                child: ListView(
-                  physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                  children: [
-                    ...PlanetUpgrades.planetUpgrades.asMap().entries.map(
-                          (e) => Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: PlanetUpgradeWidget(
-                              onTap: () {
-                                controller.buyPlanetUpgrade(e.key);
-                                Get.back();
-                              },
-                              isAvailable: e.value.isAvailable,
-                              item: e.value,
+                child: Obx(
+                  () => ListView(
+                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                    children: [
+                      ...controller.planetUpgrades.asMap().entries.map(
+                            (e) => Padding(
+                              padding: const EdgeInsets.only(bottom: 16.0),
+                              child: PlanetUpgradeWidget(
+                                onTap: () {
+                                  controller.buyPlanetUpgrade(e.key);
+                                },
+                                isAvailable: e.value.isAvailable,
+                                item: e.value,
+                              ),
                             ),
                           ),
-                        ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

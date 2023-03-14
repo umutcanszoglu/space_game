@@ -27,13 +27,13 @@ class PlanetUpgradeWidget extends StatelessWidget {
             end: Alignment.bottomLeft,
             colors: isAvailable
                 ? [
-                    niceBlackColor,
-                    cardTitleColor,
-                    niceBlackColor,
+                    const Color(0xff66347F),
+                    const Color(0xff9E4784),
+                    const Color(0xff66347F),
                   ]
                 : [
                     niceBlackColor,
-                    Colors.grey,
+                    cardColor,
                     niceBlackColor,
                   ],
           ),
@@ -47,7 +47,7 @@ class PlanetUpgradeWidget extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 1),
-                color: isAvailable ? subCardColor : niceBlackColor,
+                color: isAvailable ? moneyCircleColor : niceBlackColor,
                 borderRadius: BorderRadius.circular(32),
               ),
               child: Column(
