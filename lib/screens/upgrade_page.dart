@@ -26,9 +26,10 @@ class UpgradePage extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: PlanetUpgradeWidget(
                           onTap: () {
+                            controller.buyPlanetUpgrade(e.key);
                             Get.back();
                           },
-                          isAvailable: true,
+                          isAvailable: e.value.isAvailable,
                           item: e.value,
                         ),
                       ),

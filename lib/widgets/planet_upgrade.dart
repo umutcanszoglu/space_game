@@ -14,7 +14,7 @@ class PlanetUpgradeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isAvailable ? onTap : null,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 400),
         padding: const EdgeInsets.all(15),

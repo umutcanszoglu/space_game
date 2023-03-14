@@ -16,6 +16,7 @@ class HomeController extends GetxController {
   final planetSize = 50.obs;
   final upgrades = Upgrades.upgrades.obs;
   final planets = Planets.planets.obs;
+  final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
   final passive = 0.10.obs;
   final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
@@ -42,6 +43,13 @@ class HomeController extends GetxController {
           pow(upgrades[key].itemCount + buyCount.value - 1, 3);
 
       refreshUpgrades();
+    }
+  }
+  void buyPlanetUpgrade(int key) {
+    if (money.value >= upgrades[key].price) {
+      money.value -= planetUpgrades[key].price;
+      upgrades[key].itemProfit *= 2;
+      refreshPlanetUpgrades();
     }
   }
 
@@ -80,6 +88,7 @@ class HomeController extends GetxController {
 
     ever(money, (_) {
       refreshUpgrades();
+      refreshPlanetUpgrades();
     });
 
     ever(buyCount, (_) {
@@ -101,6 +110,16 @@ class HomeController extends GetxController {
       }
     }
     upgrades.refresh();
+  }
+  void refreshPlanetUpgrades() {
+    for (final upgrade in planetUpgrades) {
+      if (money.value >= upgrade.price) {
+        upgrade.isAvailable = true;
+      } else {
+        upgrade.isAvailable = false;
+      }
+    }
+    planetUpgrades.refresh();
   }
 
   void changeProgress() {
