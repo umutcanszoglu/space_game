@@ -52,7 +52,7 @@ class GamePage extends HookWidget {
         children: [
           const LitStarfieldContainer(
             animated: true,
-            velocity: 0.6,
+            velocity: 0.9,
             backgroundDecoration: BoxDecoration(
               color: niceBlackColor,
             ),

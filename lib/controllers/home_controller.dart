@@ -20,9 +20,10 @@ class HomeController extends GetxController {
   final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
   final buyCount = 1.obs;
+  final setVelocity = 0.5.obs;
 
   void increaseMoney() {
-    money.value += 5;
+    money.value += 1;
   }
 
   void passiveIncreaseMoney() {
@@ -109,10 +110,9 @@ class HomeController extends GetxController {
 
   void syncPrices() {
     for (final upgrade in upgrades) {
-      upgrade.price = 0;
-      for (int i = 0; i < buyCount.value + upgrade.itemCount; i++) {
-        upgrade.price += upgrade.initialPrice * pow(1.1, i);
-      }
+      upgrade.price = upgrade.initialPrice * pow(1.15, upgrade.itemCount);
+      if (buyCount.value == 10) upgrade.price *= 20.303718238;
+      if (buyCount.value == 100) upgrade.price *= 7828749.671335256;
     }
   }
 

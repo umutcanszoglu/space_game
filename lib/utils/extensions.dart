@@ -1,5 +1,11 @@
 extension DoubleX on double {
   String get doubleFormatter {
+    if (this > 999999999999999) {
+      return "${(this / 1000000000000000).toStringAsFixed(2)} Q";
+    }
+    if (this > 999999999999) {
+      return "${(this / 1000000000000).toStringAsFixed(2)} T";
+    }
     if (this > 999999999) {
       return "${(this / 1000000000).toStringAsFixed(2)} B";
     }

@@ -95,20 +95,20 @@ class ItemCard extends GetView<HomeController> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "${item.itemEffect} ${item.itemProfit} coins per second",
+                    "${item.itemEffect} ${item.itemProfit.doubleFormatter} coins per second",
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "${item.itemCount} ${item.itemEffects} ${item.itemCount * item.itemProfit} coins per second",
+                    "${item.itemCount} ${item.itemEffects} ${(item.itemCount * item.itemProfit).doubleFormatter} coins per second",
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                      item.price.doubleFormatter,
-                      style: const TextStyle(
-                          color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    item.price.doubleFormatter,
+                    style: const TextStyle(
+                        color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
