@@ -20,95 +20,85 @@ const passwordIcon = Icon(Icons.lock_outline_rounded);
 const passwordConfirmIcon = Icon(Icons.lock_open_outlined);
 const nameIcon = Icon(Icons.person_outline_rounded);
 const avatarIcon = Icon(Icons.account_circle_rounded, size: 200, color: cardColor);
-const coal = "assets/coal.png";
-const iron = "assets/iron.png";
-const gold = "assets/gold.png";
-const diamond = "assets/diamond.png";
-const emerald = "assets/emerald.png";
-const red = "assets/red.png";
-const lapis = "assets/lapis.png";
-const uranium = "assets/uranium.png";
-const jesus = "assets/jesus.png";
-const supra = "assets/supra.png";
-const pala = "assets/pala.png";
-
-class Planets {
-  static final planets = <String>[
-    "assets/earth.json",
-    "assets/moon.json",
-    "assets/mars.json",
-    "assets/saturn.json",
-    "assets/planet.json",
-  ];
-}
+const coal = "assets/upgrades/coal.png";
+const iron = "assets/upgrades/iron.png";
+const gold = "assets/upgrades/gold.png";
+const diamond = "assets/upgrades/diamond.png";
+const emerald = "assets/upgrades/emerald.png";
+const red = "assets/upgrades/red.png";
+const lapis = "assets/upgrades/lapis.png";
+const uranium = "assets/upgrades/uranium.png";
+const jesus = "assets/upgrades/jesus.png";
+const supra = "assets/upgrades/supra.png";
+const pala = "assets/upgrades/pala.png";
 
 class PlanetUpgrades {
   static final planetUpgrades = <PlanetUpgrade>[
     PlanetUpgrade(
-      image: "assets/upCoal.png",
+      image: "assets/planetUpgrades/upCoal.png",
       name: "Coal - Level Up!",
       detail: "this item gets twice coal.",
       price: 1000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upIron.png",
+      image: "assets/planetUpgrades/upIron.png",
       name: "Iron - Level Up!",
       detail: "this item gets twice iron.",
       price: 2000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upGold.png",
+      image: "assets/planetUpgrades/upGold.png",
       name: "Gold - Level Up!",
       detail: "this item gets twice gold.",
       price: 4000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upDiamond.png",
+      image: "assets/planetUpgrades/upDiamond.png",
       name: "Diamond - Level Up!",
       detail: "this item gets twice diamond.",
       price: 8000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upEmerald.png",
+      image: "assets/planetUpgrades/upEmerald.png",
       name: "Emerald - Level Up!",
       detail: "this item gets twice emerald.",
       price: 16000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upLapis.png",
+      image: "assets/planetUpgrades/upLapis.png",
       name: "Lapis Lazuli - Level Up!",
       detail: "this item gets twice lapis lazuli.",
       price: 32000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upUranium.png",
+      image: "assets/planetUpgrades/upUranium.png",
       name: "Uranium - Level Up!",
       detail: "this item gets twice uranium.",
       price: 64000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upJesus.png",
+      image: "assets/planetUpgrades/upJesus.png",
       name: "Jesus Christ - Level Up!",
       detail: "this item gets twice jesus christ.",
       price: 128000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upSupra.png",
+      image: "assets/planetUpgrades/upSupra.png",
       name: "Supra MK4 - Level Up!",
       detail: "this item gets twice supra.",
       price: 256000.0,
       isAvailable: false,
     ),
     PlanetUpgrade(
-      image: "assets/upPala.png",
+      image: "assets/planetUpgrades/upPala.png",
       name: "Pala Baba - Level Up!",
       detail: "this item gets twice pala.",
       price: 512000.0,

@@ -15,7 +15,7 @@ class HomeController extends GetxController {
   final progress = 0.0.obs;
   final planetSize = 50.obs;
   final upgrades = Upgrades.upgrades.obs;
-  final planets = Planets.planets.obs;
+
   final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
   final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
@@ -140,7 +140,7 @@ class HomeController extends GetxController {
   }
 
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.0001);
+    progress.value = min(1, progress.value + 0.001);
   }
 
   void passiveProgress() {

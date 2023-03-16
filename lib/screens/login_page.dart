@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              SizedBox(height: 320, child: Lottie.asset("assets/loginPage.json")),
+              SizedBox(height: 320, child: Lottie.asset("assets/lotties/loginPage.json")),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
                 decoration: BoxDecoration(
@@ -67,9 +67,9 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(height: 4),
                     Row(
                       children: const [
-                        Expanded(child: SignButtons(logo: "assets/google.png")),
+                        Expanded(child: SignButtons(logo: "assets/logos/google.png")),
                         SizedBox(width: 10),
-                        Expanded(child: SignButtons(logo: "assets/apple.png")),
+                        Expanded(child: SignButtons(logo: "assets/logos/apple.png")),
                       ],
                     ),
                     const SizedBox(height: 16),

@@ -91,7 +91,7 @@ class GamePage extends HookWidget {
                           width: controller.rocketSize.value.toDouble(),
                           duration: const Duration(milliseconds: 300),
                           child: Lottie.asset(
-                            "assets/rocket.json",
+                            "assets/lotties/rocket.json",
                           ),
                         ),
                       )),
@@ -100,14 +100,13 @@ class GamePage extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Animated(
-                            duration: const Duration(seconds: 1),
-                            value: 100 - (controller.progress.value * 100),
-                            builder: (context, child, animation) => SizedBox(
-                                  width: animation.value,
-                                  child: Lottie.asset(
-                                    controller.planets[controller.planetChanger.value],
-                                  ),
-                                )),
+                          duration: const Duration(seconds: 1),
+                          value: 100 - (controller.progress.value * 100),
+                          builder: (context, child, animation) => SizedBox(
+                            width: animation.value,
+                            child: Image.asset("assets/planets/g1p1.gif"),
+                          ),
+                        ),
                         Expanded(
                           child: Animated(
                             duration: const Duration(milliseconds: 600),
@@ -131,9 +130,7 @@ class GamePage extends HookWidget {
                           value: (controller.progress.value * 100),
                           builder: (context, child, animation) => SizedBox(
                             width: animation.value,
-                            child: Lottie.asset(
-                              controller.planets[controller.planetChanger.value + 1],
-                            ),
+                            child: Image.asset("assets/planets/g1p20.gif"),
                           ),
                         ),
                       ],

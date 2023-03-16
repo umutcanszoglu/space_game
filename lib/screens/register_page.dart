@@ -17,7 +17,7 @@ class RegisterPage extends StatelessWidget {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              Lottie.asset("assets/register.json"),
+              Lottie.asset("assets/lotties/register.json"),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 width: double.infinity,
