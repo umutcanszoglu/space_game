@@ -55,7 +55,7 @@ class PlanetUpgradeWidget extends StatelessWidget {
                 children: [
                   Image.asset(
                     item.image,
-                    width: 50,
+                    width: 80,
                   ),
                 ],
               ),

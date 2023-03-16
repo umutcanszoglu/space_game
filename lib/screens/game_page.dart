@@ -90,9 +90,7 @@ class GamePage extends HookWidget {
                         child: AnimatedContainer(
                           width: controller.rocketSize.value.toDouble(),
                           duration: const Duration(milliseconds: 300),
-                          child: Lottie.asset(
-                            "assets/lotties/rocket.json",
-                          ),
+                          child: Lottie.asset("assets/lotties/rocket.json"),
                         ),
                       )),
                   Obx(
@@ -130,7 +128,7 @@ class GamePage extends HookWidget {
                           value: (controller.progress.value * 100),
                           builder: (context, child, animation) => SizedBox(
                             width: animation.value,
-                            child: Image.asset("assets/planets/g1p20.gif"),
+                            child: Image.asset("assets/planets/g1p2.gif"),
                           ),
                         ),
                       ],
@@ -184,7 +182,7 @@ class GamePage extends HookWidget {
                                           size: 50,
                                         )),
                                     const Text(
-                                      "Upgrade Your Fuel",
+                                      "Feed Your Crew",
                                       style: TextStyle(
                                         color: moneyCircleColor,
                                         fontSize: 20,
