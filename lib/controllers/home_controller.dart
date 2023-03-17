@@ -22,6 +22,8 @@ class HomeController extends GetxController {
   final buyCount = 1.obs;
   final activeCount = 0.obs;
   final listCount = 0.obs;
+  final random1 = 0.obs;
+  final random2 = 0.obs;
 
   void increaseMoney() {
     money.value += 1;
@@ -48,6 +50,7 @@ class HomeController extends GetxController {
   void buyPlanetUpgrade(int key) {
     if (money.value >= planetUpgrades[key].price) {
       money.value -= planetUpgrades[key].price;
+      planetUpgrades[key].price *= 10;
       upgrades[key].itemProfit *= 2;
       refreshPlanetUpgrades();
       refreshUpgrades();
@@ -56,7 +59,7 @@ class HomeController extends GetxController {
 
   void boost() {
     progress.value = min(1, progress.value + 0.1);
-    money.value += 250;
+    money.value += 10;
   }
 
   void resizeRocket() async {
@@ -75,7 +78,7 @@ class HomeController extends GetxController {
         passiveProgress();
         passiveIncreaseMoney();
       } else if (progress.value >= 0.93) {
-        if (planetChanger.value > 2) {
+        if (planetChanger.value > 22) {
           planetChanger.value = 0;
         }
         planetChanger.value += 1;
@@ -97,6 +100,7 @@ class HomeController extends GetxController {
       refreshUpgrades();
       refreshPlanetUpgrades();
       getPurchasable();
+      getPurchasableUpgrade();
     });
 
     ever(buyCount, (_) {
@@ -109,6 +113,14 @@ class HomeController extends GetxController {
   void getPurchasable() {
     for (var upgrade in upgrades) {
       if (money.value > upgrade.price - 10) {
+        upgrade.isActive = true;
+      }
+    }
+  }
+
+  void getPurchasableUpgrade() {
+    for (var upgrade in planetUpgrades) {
+      if (money.value > upgrade.price) {
         upgrade.isActive = true;
       }
     }

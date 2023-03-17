@@ -6,6 +6,7 @@ class PlanetUpgrade {
   double price;
   bool isAvailable;
   int rank;
+  bool isActive;
   PlanetUpgrade({
     required this.image,
     required this.name,
@@ -13,5 +14,6 @@ class PlanetUpgrade {
     required this.price,
     required this.isAvailable,
     required this.rank,
+    required this.isActive,
   });
 }

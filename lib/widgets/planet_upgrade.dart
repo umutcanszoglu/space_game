@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_game/controllers/home_controller.dart';
+import 'package:space_game/utils/animated.dart';
 import 'package:space_game/utils/extensions.dart';
 
 import '../const/const.dart';
@@ -86,10 +87,18 @@ class PlanetUpgradeWidget extends StatelessWidget {
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    item.price.doubleFormatter,
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                  Animated(
+                    value: item.price,
+                    duration: const Duration(milliseconds: 500),
+                    builder: (context, child, animation) => Text(
+                      animation.value.doubleFormatter,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),

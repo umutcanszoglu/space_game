@@ -5,6 +5,7 @@ import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
 import 'package:space_game/controllers/home_controller.dart';
+import 'package:space_game/utils/custom_linear_progress_painter.dart';
 import 'package:space_game/widgets/game_drawer.dart';
 import 'package:space_game/widgets/item_card.dart';
 import 'package:space_game/widgets/main_buttons.dart';
@@ -102,33 +103,73 @@ class GamePage extends HookWidget {
                           value: 100 - (controller.progress.value * 100),
                           builder: (context, child, animation) => SizedBox(
                             width: animation.value,
-                            child: Image.asset("assets/planets/g1p1.gif"),
+                            child: Image.asset(Planets.planets[controller.planetChanger.value]),
                           ),
                         ),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Animated(
                             duration: const Duration(milliseconds: 600),
                             value: controller.progress.value,
                             builder: (context, child, animation) {
-                              return SliderTheme(
-                                data: const SliderThemeData(
-                                    thumbColor: Colors.green,
-                                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0)),
-                                child: Slider(
-                                  onChanged: (_) {},
-                                  value: animation.value,
-                                  activeColor: moneyCircleColor,
-                                ),
+                              return SizedBox(
+                                width: double.infinity,
+                                height: 48,
+                                child: LayoutBuilder(builder: (context, constraints) {
+                                  return Stack(
+                                    children: [
+                                      Positioned.fill(
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: CustomPaint(
+                                            size: Size(constraints.maxWidth, 8),
+                                            painter: CustomLinearProgressPainter(
+                                              backgroundColor: niceBlackColor,
+                                              valueColor: cardTitleColor,
+                                              value: animation.value,
+                                              blurRadius: 8,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: constraints.maxWidth * animation.value - 6,
+                                        top: 8,
+                                        child: AnimatedContainer(
+                                          duration: const Duration(milliseconds: 400),
+                                          width: 32,
+                                          height: 32,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: (controller.progress.value - animation.value <
+                                                    0.001)
+                                                ? Colors.transparent
+                                                : Colors.transparent,
+                                            borderRadius: BorderRadius.circular(32),
+                                          ),
+                                          child: const RotatedBox(
+                                            quarterTurns: 1,
+                                            child: Icon(
+                                              Icons.rocket_rounded,
+                                              color: moneyCircleColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                }),
                               );
                             },
                           ),
                         ),
+                        const SizedBox(width: 16),
                         Animated(
                           duration: const Duration(milliseconds: 600),
                           value: (controller.progress.value * 100),
                           builder: (context, child, animation) => SizedBox(
                             width: animation.value,
-                            child: Image.asset("assets/planets/g1p2.gif"),
+                            child: Image.asset(Planets.planets[controller.planetChanger.value + 1]),
                           ),
                         ),
                       ],

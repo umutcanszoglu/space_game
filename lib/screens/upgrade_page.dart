@@ -40,9 +40,13 @@ class UpgradePage extends StatelessWidget {
                   () => ListView(
                     physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                     children: [
-                      ...controller.planetUpgrades.asMap().entries.map(
+                      ...controller.planetUpgrades
+                          .asMap()
+                          .entries
+                          .where((element) => element.value.isActive == true)
+                          .map(
                             (e) => Padding(
-                              padding: const EdgeInsets.only(bottom: 16.0),
+                              padding: const EdgeInsets.only(bottom: 8.0),
                               child: PlanetUpgradeWidget(
                                 onTap: () {
                                   controller.buyPlanetUpgrade(e.key);
