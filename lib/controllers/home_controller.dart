@@ -15,12 +15,13 @@ class HomeController extends GetxController {
   final progress = 0.0.obs;
   final planetSize = 50.obs;
   final upgrades = Upgrades.upgrades.obs;
-
+  final upgradeColorss = upgradeColors;
   final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
   final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
   final buyCount = 1.obs;
-  final setVelocity = 0.5.obs;
+  final activeCount = 0.obs;
+  final listCount = 0.obs;
 
   void increaseMoney() {
     money.value += 1;
@@ -34,10 +35,6 @@ class HomeController extends GetxController {
     }
     money.value += increase;
   }
-
-  // void addUpgrade() {
-  //   upgrades.insert(0, Upgrades.upgrades.first);
-  // }
 
   void buyUpgrade(int key) {
     if (money.value >= upgrades[key].price) {
@@ -99,6 +96,7 @@ class HomeController extends GetxController {
     ever(money, (_) {
       refreshUpgrades();
       refreshPlanetUpgrades();
+      getPurchasable();
     });
 
     ever(buyCount, (_) {
@@ -106,6 +104,14 @@ class HomeController extends GetxController {
       refreshUpgrades();
     });
     super.onInit();
+  }
+
+  void getPurchasable() {
+    for (var upgrade in upgrades) {
+      if (money.value > upgrade.price - 10) {
+        upgrade.isActive = true;
+      }
+    }
   }
 
   void syncPrices() {

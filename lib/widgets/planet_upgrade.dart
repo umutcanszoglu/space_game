@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/utils/extensions.dart';
 
 import '../const/const.dart';
@@ -13,6 +15,7 @@ class PlanetUpgradeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeController());
     return GestureDetector(
       onTap: isAvailable ? onTap : null,
       child: AnimatedContainer(
@@ -53,9 +56,15 @@ class PlanetUpgradeWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    item.image,
-                    width: 80,
+                  ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      controller.upgradeColorss[item.rank].withOpacity(0.7),
+                      BlendMode.srcATop,
+                    ),
+                    child: Image.asset(
+                      item.image,
+                      width: 80,
+                    ),
                   ),
                 ],
               ),

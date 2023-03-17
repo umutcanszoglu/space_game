@@ -5,11 +5,13 @@ class PlanetUpgrade {
   String detail;
   double price;
   bool isAvailable;
+  int rank;
   PlanetUpgrade({
     required this.image,
     required this.name,
     required this.detail,
     required this.price,
     required this.isAvailable,
+    required this.rank,
   });
 }

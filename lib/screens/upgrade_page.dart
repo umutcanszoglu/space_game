@@ -46,6 +46,11 @@ class UpgradePage extends StatelessWidget {
                               child: PlanetUpgradeWidget(
                                 onTap: () {
                                   controller.buyPlanetUpgrade(e.key);
+                                  if (e.value.rank < 3) {
+                                    e.value.rank += 1;
+                                  } else {
+                                    e.value.rank = 0;
+                                  }
                                 },
                                 isAvailable: e.value.isAvailable,
                                 item: e.value,

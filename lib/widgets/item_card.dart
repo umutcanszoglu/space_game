@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/models/upgrade.dart';
+import 'package:space_game/utils/animated.dart';
 import 'package:space_game/utils/extensions.dart';
 
 import '../const/const.dart';
@@ -54,10 +55,19 @@ class ItemCard extends GetView<HomeController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Image.asset(
-                    item.image,
-                    width: 50,
-                  ),
+                  isAvailable
+                      ? Image.asset(
+                          item.image,
+                          width: 50,
+                        )
+                      : ColorFiltered(
+                          colorFilter:
+                              ColorFilter.mode(niceBlackColor.withOpacity(0.8), BlendMode.srcATop),
+                          child: Image.asset(
+                            item.image,
+                            width: 50,
+                          ),
+                        ),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(6),
@@ -104,10 +114,18 @@ class ItemCard extends GetView<HomeController> {
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    item.price.doubleFormatter,
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                  Animated(
+                    value: item.price,
+                    duration: const Duration(milliseconds: 500),
+                    builder: (context, child, animation) => Text(
+                      animation.value.doubleFormatter,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),

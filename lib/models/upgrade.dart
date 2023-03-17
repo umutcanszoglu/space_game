@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 class Upgrade {
   String image;
   String itemName;
@@ -9,6 +10,7 @@ class Upgrade {
   double itemProfit;
   int itemCount;
   bool isAvailable;
+  bool isActive;
 
   Upgrade({
     required this.image,
@@ -19,6 +21,7 @@ class Upgrade {
     required this.itemProfit,
     required this.itemCount,
     required this.isAvailable,
+    required this.isActive,
   }) : initialPrice = price;
 
   double get passive => itemCount * itemProfit;

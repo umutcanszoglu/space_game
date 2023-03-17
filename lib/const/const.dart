@@ -12,6 +12,13 @@ const subCardColor = Color.fromARGB(255, 131, 164, 134);
 const cardTitleColor = Color(0xff628c36);
 const cardButtonColor = Color.fromARGB(255, 163, 150, 15);
 const moneyCircleColor = Color.fromARGB(255, 214, 214, 214);
+List<Color> upgradeColors = [
+  Colors.purple,
+  Colors.blue,
+  Colors.yellow,
+  Colors.green,
+];
+
 //Icons
 const goBackIcon = Icon(Icons.arrow_back_ios, size: 30, color: niceBlackColor);
 const upgradeIcon = Icon(Icons.settings, size: 50, color: moneyCircleColor);
@@ -37,16 +44,120 @@ const meat = "assets/upgrades/meat.png";
 const burger = "assets/upgrades/burger.png";
 const donut = "assets/upgrades/donut.png";
 const cake = "assets/upgrades/cake.png";
-//Planet Upgrades
 
 class PlanetUpgrades {
   static final planetUpgrades = <PlanetUpgrade>[
     PlanetUpgrade(
-      image: "assets/ships/s1u0.png",
-      name: "Mark-01",
+      image: apple,
+      name: "Mighty Apple",
       detail: "this item gets twice apple.",
       price: 1000.0,
       isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: banana,
+      name: "Perfect Banana",
+      detail: "this item gets twice banana.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: pepper,
+      name: "Hot Chili Pepper",
+      detail: "this item gets twice pepper.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: garlic,
+      name: "Stinky Garlic",
+      detail: "this item gets twice garlic.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: mushroom,
+      name: "Smurf's Mushroom",
+      detail: "this item gets twice mushroom.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: corn,
+      name: "Big Corn",
+      detail: "this item gets twice corn.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: bread,
+      name: "Stale Bread",
+      detail: "this item gets twice bread.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: croissant,
+      name: "French Croissant",
+      detail: "this item gets twice croissant.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: fish,
+      name: "Fresh Fish",
+      detail: "this item gets twice Fish.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: sushi,
+      name: "California Roll",
+      detail: "this item gets twice sushi.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: meat,
+      name: "Pure Protein",
+      detail: "this item gets twice meat.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: burger,
+      name: "McDonalds's BigMac",
+      detail: "this item gets twice burger.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: donut,
+      name: "Breakfast For Cops",
+      detail: "this item gets twice donut.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
+    ),
+    PlanetUpgrade(
+      image: cake,
+      name: "Happy Birthday!!",
+      detail: "this item gets twice cake.",
+      price: 1000.0,
+      isAvailable: false,
+      rank: 0,
     ),
   ];
 }
@@ -62,6 +173,7 @@ class Upgrades {
       itemProfit: 0.1,
       itemCount: 0,
       isAvailable: false,
+      isActive: true,
     ),
     Upgrade(
       image: banana,
@@ -72,6 +184,7 @@ class Upgrades {
       itemProfit: 1,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: pepper,
@@ -82,6 +195,7 @@ class Upgrades {
       itemProfit: 8,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: garlic,
@@ -92,6 +206,7 @@ class Upgrades {
       itemProfit: 47,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: mushroom,
@@ -102,6 +217,7 @@ class Upgrades {
       itemProfit: 260,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: corn,
@@ -112,6 +228,7 @@ class Upgrades {
       itemProfit: 1400,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: bread,
@@ -122,6 +239,7 @@ class Upgrades {
       itemProfit: 7800,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: croissant,
@@ -132,6 +250,7 @@ class Upgrades {
       itemProfit: 44000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: fish,
@@ -142,6 +261,7 @@ class Upgrades {
       itemProfit: 260000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: sushi,
@@ -152,6 +272,7 @@ class Upgrades {
       itemProfit: 1600000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: meat,
@@ -162,6 +283,7 @@ class Upgrades {
       itemProfit: 10000000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: burger,
@@ -172,6 +294,7 @@ class Upgrades {
       itemProfit: 650000000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: donut,
@@ -182,6 +305,7 @@ class Upgrades {
       itemProfit: 4300000000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
     Upgrade(
       image: cake,
@@ -192,6 +316,7 @@ class Upgrades {
       itemProfit: 2900000000,
       itemCount: 0,
       isAvailable: false,
+      isActive: false,
     ),
   ];
 }

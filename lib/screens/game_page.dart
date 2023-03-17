@@ -209,26 +209,32 @@ class GamePage extends HookWidget {
                                       ],
                                     ),
                                     Expanded(
-                                      child: Obx(() => ListView(
-                                            physics: const BouncingScrollPhysics(
-                                              parent: AlwaysScrollableScrollPhysics(),
-                                            ),
-                                            children: [
-                                              const SizedBox(height: 20),
-                                              ...controller.upgrades.asMap().entries.map(
-                                                    (e) => Padding(
-                                                      padding: const EdgeInsets.only(bottom: 16.0),
-                                                      child: ItemCard(
-                                                        onTap: () {
-                                                          controller.buyUpgrade(e.key);
-                                                        },
-                                                        item: e.value,
-                                                        isAvailable: e.value.isAvailable,
-                                                      ),
+                                      child: Obx(
+                                        () => ListView(
+                                          physics: const BouncingScrollPhysics(
+                                            parent: AlwaysScrollableScrollPhysics(),
+                                          ),
+                                          children: [
+                                            const SizedBox(height: 20),
+                                            ...controller.upgrades
+                                                .asMap()
+                                                .entries
+                                                .where((e) => e.value.isActive == true)
+                                                .map(
+                                                  (i) => Padding(
+                                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                                    child: ItemCard(
+                                                      onTap: () {
+                                                        controller.buyUpgrade(i.key);
+                                                      },
+                                                      item: i.value,
+                                                      isAvailable: i.value.isAvailable,
                                                     ),
                                                   ),
-                                            ],
-                                          )),
+                                                ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
