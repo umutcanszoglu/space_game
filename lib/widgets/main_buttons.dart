@@ -19,7 +19,7 @@ class MainButtons extends StatelessWidget {
         width: 1,
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
+        padding: const EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
         child: icon,
       ),
     );

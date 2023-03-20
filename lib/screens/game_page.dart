@@ -8,7 +8,6 @@ import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/utils/custom_linear_progress_painter.dart';
 import 'package:space_game/widgets/game_drawer.dart';
 import 'package:space_game/widgets/item_card.dart';
-import 'package:space_game/widgets/main_buttons.dart';
 import 'package:space_game/widgets/money_card.dart';
 
 import '../utils/animated.dart';
@@ -61,15 +60,22 @@ class GamePage extends HookWidget {
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () => controller.globalKey.currentState?.openDrawer(),
-                        child: Container(
+              child: GestureDetector(
+                onTap: () {
+                  controller.increaseMoney();
+                  controller.resizeRocket();
+                  controller.passiveMoney.value += (controller.passiveMoney.value) * 0.001;
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //USER ACCOUNT
+                        GestureDetector(
+                          onTap: () => controller.globalKey.currentState?.openDrawer(),
+                          child: Container(
                             width: 50,
                             height: 50,
                             decoration: BoxDecoration(
@@ -77,217 +83,226 @@ class GamePage extends HookWidget {
                               color: cardTitleColor,
                               shape: BoxShape.circle,
                             ),
-                            child: const Icon(
-                              Icons.rocket_rounded,
-                              size: 35,
-                              color: moneyCircleColor,
-                            )),
-                      ),
-                      Expanded(child: Obx(() => MoneyCard(money: controller.money.value))),
-                    ],
-                  ),
-                  const SizedBox(height: 50),
-                  Obx(() => Expanded(
+                            child: miniAvatarIcon,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        //BOOST ICON
+                        GestureDetector(
+                          onTap: () {
+                            controller.boost();
+                            controller.resizeRocket();
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: moneyCircleColor, width: 2),
+                              color: cardTitleColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: boostIcon,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        //MONEY CARD
+                        Expanded(
+                          child: Obx(
+                            () => MoneyCard(
+                              money: controller.money.value,
+                              onTap: () {
+                                Get.bottomSheet(
+                                  AnimatedContainer(
+                                    duration: const Duration(milliseconds: 300),
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(32),
+                                          topRight: Radius.circular(32)),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          subCardColor,
+                                          cardColor,
+                                          subCardColor,
+                                        ],
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                                      child: Column(
+                                        children: [
+                                          const Padding(
+                                              padding: EdgeInsets.symmetric(horizontal: 16),
+                                              child: Icon(
+                                                Icons.horizontal_rule_rounded,
+                                                color: Colors.white,
+                                                size: 50,
+                                              )),
+                                          const Text(
+                                            "Feed Your Crew",
+                                            style: TextStyle(
+                                              color: moneyCircleColor,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 16),
+                                          TabBar(
+                                            controller: tabController,
+                                            indicatorColor: moneyCircleColor,
+                                            tabs: const [
+                                              Text(
+                                                "x1",
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                              Text(
+                                                "x10",
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                              Text(
+                                                "x100",
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                            ],
+                                          ),
+                                          Expanded(
+                                            child: Obx(
+                                              () => ListView(
+                                                physics: const BouncingScrollPhysics(
+                                                  parent: AlwaysScrollableScrollPhysics(),
+                                                ),
+                                                children: [
+                                                  const SizedBox(height: 20),
+                                                  ...controller.upgrades
+                                                      .asMap()
+                                                      .entries
+                                                      .where((e) => e.value.isActive == true)
+                                                      .map(
+                                                        (i) => Padding(
+                                                          padding:
+                                                              const EdgeInsets.only(bottom: 8.0),
+                                                          child: ItemCard(
+                                                            onTap: () {
+                                                              controller.buyUpgrade(i.key);
+                                                            },
+                                                            item: i.value,
+                                                            isAvailable: i.value.isAvailable,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 50),
+                    //MAIN ROCKET
+                    Obx(
+                      () => Expanded(
                         child: AnimatedContainer(
                           width: controller.rocketSize.value.toDouble(),
                           duration: const Duration(milliseconds: 300),
                           child: Lottie.asset("assets/lotties/rocket.json"),
                         ),
-                      )),
-                  Obx(
-                    () => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Animated(
-                          duration: const Duration(seconds: 1),
-                          value: 100 - (controller.progress.value * 100),
-                          builder: (context, child, animation) => SizedBox(
-                            width: animation.value,
-                            child: Image.asset(Planets.planets[controller.planetChanger.value]),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Animated(
-                            duration: const Duration(milliseconds: 600),
-                            value: controller.progress.value,
-                            builder: (context, child, animation) {
-                              return SizedBox(
-                                width: double.infinity,
-                                height: 48,
-                                child: LayoutBuilder(builder: (context, constraints) {
-                                  return Stack(
-                                    children: [
-                                      Positioned.fill(
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: CustomPaint(
-                                            size: Size(constraints.maxWidth, 8),
-                                            painter: CustomLinearProgressPainter(
-                                              backgroundColor: niceBlackColor,
-                                              valueColor: cardTitleColor,
-                                              value: animation.value,
-                                              blurRadius: 8,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: constraints.maxWidth * animation.value - 6,
-                                        top: 8,
-                                        child: AnimatedContainer(
-                                          duration: const Duration(milliseconds: 400),
-                                          width: 32,
-                                          height: 32,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: (controller.progress.value - animation.value <
-                                                    0.001)
-                                                ? Colors.transparent
-                                                : Colors.transparent,
-                                            borderRadius: BorderRadius.circular(32),
-                                          ),
-                                          child: const RotatedBox(
-                                            quarterTurns: 1,
-                                            child: Icon(
-                                              Icons.rocket_rounded,
-                                              color: moneyCircleColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                }),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Animated(
-                          duration: const Duration(milliseconds: 600),
-                          value: (controller.progress.value * 100),
-                          builder: (context, child, animation) => SizedBox(
-                            width: animation.value,
-                            child: Image.asset(Planets.planets[controller.planetChanger.value + 1]),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 80),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MainButtons(
-                          onTap: () {
-                            controller.boost();
-                            controller.resizeRocket();
-                          },
-                          icon: boostIcon),
-                      MainButtons(
-                        onTap: () {
-                          controller.increaseMoney();
-                          controller.resizeRocket();
-                        },
-                        icon: rocketIcon,
                       ),
-                      MainButtons(
-                        icon: upgradeIcon,
-                        onTap: () {
-                          Get.bottomSheet(
-                            AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(32), topRight: Radius.circular(32)),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    subCardColor,
-                                    cardColor,
-                                    subCardColor,
-                                  ],
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 24),
-                                child: Column(
-                                  children: [
-                                    const Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 16),
-                                        child: Icon(
-                                          Icons.horizontal_rule_rounded,
-                                          color: Colors.white,
-                                          size: 50,
-                                        )),
-                                    const Text(
-                                      "Feed Your Crew",
-                                      style: TextStyle(
-                                        color: moneyCircleColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 16),
-                                    TabBar(
-                                      controller: tabController,
-                                      indicatorColor: moneyCircleColor,
-                                      tabs: const [
-                                        Text(
-                                          "x1",
-                                          style: TextStyle(fontSize: 25),
+                    ),
+                    //PLANET CHANGERS
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Animated(
+                            duration: const Duration(seconds: 1),
+                            value: 100 - (controller.progress.value * 100),
+                            builder: (context, child, animation) => SizedBox(
+                              width: animation.value,
+                              child: Image.asset(Planets.planets[controller.planetChanger.value]),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Animated(
+                              duration: const Duration(milliseconds: 600),
+                              value: controller.progress.value,
+                              builder: (context, child, animation) {
+                                return SizedBox(
+                                  width: double.infinity,
+                                  height: 48,
+                                  child: LayoutBuilder(builder: (context, constraints) {
+                                    return Stack(
+                                      children: [
+                                        Positioned.fill(
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: CustomPaint(
+                                              size: Size(constraints.maxWidth, 8),
+                                              painter: CustomLinearProgressPainter(
+                                                backgroundColor: niceBlackColor,
+                                                valueColor: cardTitleColor,
+                                                value: animation.value,
+                                                blurRadius: 8,
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                        Text(
-                                          "x10",
-                                          style: TextStyle(fontSize: 25),
-                                        ),
-                                        Text(
-                                          "x100",
-                                          style: TextStyle(fontSize: 25),
+                                        Positioned(
+                                          left: constraints.maxWidth * animation.value - 6,
+                                          top: 8,
+                                          child: AnimatedContainer(
+                                            duration: const Duration(milliseconds: 400),
+                                            width: 32,
+                                            height: 32,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              color: (controller.progress.value - animation.value <
+                                                      0.001)
+                                                  ? Colors.transparent
+                                                  : Colors.transparent,
+                                              borderRadius: BorderRadius.circular(32),
+                                            ),
+                                            child: const RotatedBox(
+                                              quarterTurns: 1,
+                                              child: Icon(
+                                                Icons.rocket_rounded,
+                                                color: moneyCircleColor,
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ],
-                                    ),
-                                    Expanded(
-                                      child: Obx(
-                                        () => ListView(
-                                          physics: const BouncingScrollPhysics(
-                                            parent: AlwaysScrollableScrollPhysics(),
-                                          ),
-                                          children: [
-                                            const SizedBox(height: 20),
-                                            ...controller.upgrades
-                                                .asMap()
-                                                .entries
-                                                .where((e) => e.value.isActive == true)
-                                                .map(
-                                                  (i) => Padding(
-                                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                                    child: ItemCard(
-                                                      onTap: () {
-                                                        controller.buyUpgrade(i.key);
-                                                      },
-                                                      item: i.value,
-                                                      isAvailable: i.value.isAvailable,
-                                                    ),
-                                                  ),
-                                                ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                    );
+                                  }),
+                                );
+                              },
                             ),
-                          );
-                        },
+                          ),
+                          const SizedBox(width: 16),
+                          Animated(
+                            duration: const Duration(milliseconds: 600),
+                            value: (controller.progress.value * 100),
+                            builder: (context, child, animation) => SizedBox(
+                              width: animation.value,
+                              child:
+                                  Image.asset(Planets.planets[controller.planetChanger.value + 1]),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-                ],
+                    ),
+                    const SizedBox(height: 32),
+                  ],
+                ),
               ),
             ),
           ),

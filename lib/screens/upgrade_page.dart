@@ -31,7 +31,11 @@ class UpgradePage extends StatelessWidget {
                     child: IconButton(onPressed: () => Get.back(), icon: goBackIcon),
                   ),
                   const SizedBox(width: 30),
-                  Expanded(child: Obx(() => MoneyCard(money: controller.money.value))),
+                  Expanded(
+                      child: Obx(() => MoneyCard(
+                            money: controller.money.value,
+                            onTap: () {},
+                          ))),
                 ],
               ),
               const SizedBox(height: 32),

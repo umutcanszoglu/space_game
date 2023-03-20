@@ -24,9 +24,10 @@ class HomeController extends GetxController {
   final listCount = 0.obs;
   final random1 = 0.obs;
   final random2 = 0.obs;
+  final passiveMoney = 1.0.obs;
 
   void increaseMoney() {
-    money.value += 1;
+    money.value += passiveMoney.value;
   }
 
   void passiveIncreaseMoney() {
@@ -59,7 +60,7 @@ class HomeController extends GetxController {
 
   void boost() {
     progress.value = min(1, progress.value + 0.1);
-    money.value += 10;
+    money.value += 100;
   }
 
   void resizeRocket() async {
@@ -112,7 +113,7 @@ class HomeController extends GetxController {
 
   void getPurchasable() {
     for (var upgrade in upgrades) {
-      if (money.value > upgrade.price - 10) {
+      if (money.value > upgrade.price - 50) {
         upgrade.isActive = true;
       }
     }
@@ -158,7 +159,7 @@ class HomeController extends GetxController {
   }
 
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.001);
+    progress.value = min(1, progress.value + 0.00075);
   }
 
   void passiveProgress() {

@@ -11,7 +11,7 @@ const cardColor = Color(0xff787878);
 const subCardColor = Color.fromARGB(255, 131, 164, 134);
 const cardTitleColor = Color(0xff628c36);
 const cardButtonColor = Color.fromARGB(255, 163, 150, 15);
-const moneyCircleColor = Color.fromARGB(255, 214, 214, 214);
+const moneyCircleColor = Color(0xFFD6D6D6);
 List<Color> upgradeColors = [
   Colors.purple,
   Colors.blue,
@@ -21,14 +21,15 @@ List<Color> upgradeColors = [
 
 //Icons
 const goBackIcon = Icon(Icons.arrow_back_ios, size: 30, color: niceBlackColor);
-const upgradeIcon = Icon(Icons.settings, size: 50, color: moneyCircleColor);
-const rocketIcon = Icon(Icons.rocket_launch_outlined, size: 50, color: moneyCircleColor);
-const boostIcon = Icon(Icons.double_arrow, size: 50, color: moneyCircleColor);
+const upgradeIcon = Icon(Icons.double_arrow, size: 30, color: moneyCircleColor);
+const rocketIcon = Icon(Icons.rocket_launch_outlined, size: 30, color: moneyCircleColor);
+const boostIcon = Icon(Icons.rocket_launch_rounded, size: 30, color: moneyCircleColor);
 const emailIcon = Icon(Icons.mail_outlined);
 const passwordIcon = Icon(Icons.lock_outline_rounded);
 const passwordConfirmIcon = Icon(Icons.lock_open_outlined);
 const nameIcon = Icon(Icons.person_outline_rounded);
 const avatarIcon = Icon(Icons.account_circle_rounded, size: 200, color: cardColor);
+const miniAvatarIcon = Icon(Icons.person_outline_rounded, size: 40, color: moneyCircleColor);
 //Upgrades
 const apple = "assets/upgrades/apple.png";
 const banana = "assets/upgrades/banana.png";
