@@ -141,7 +141,7 @@ class HomeController extends GetxController {
     });
 
     moneyTimer?.cancel();
-    moneyTimer = Timer.periodic(const Duration(milliseconds: 20), (_) {
+    moneyTimer = Timer.periodic(const Duration(milliseconds: 16), (_) {
       for (final showMoney in moneyShower) {
         showMoney.opacity -= 0.01;
         showMoney.x += showMoney.vx;

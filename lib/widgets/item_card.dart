@@ -118,7 +118,7 @@ class ItemCard extends GetView<HomeController> {
                     value: item.price,
                     duration: const Duration(milliseconds: 500),
                     builder: (context, child, animation) => Text(
-                      animation.value.doubleFormatter,
+                      "${animation.value.doubleFormatter} \$",
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,

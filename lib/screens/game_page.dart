@@ -65,11 +65,11 @@ class GamePage extends HookWidget {
                     onTap: () {
                       controller.increaseMoney();
                       controller.resizeRocket();
-                      final money = (controller.passiveMoney.value) * 0.001;
+                      final money = (controller.passiveMoney.value) * 0.005;
                       controller.passiveMoney.value += money;
                       final showMoney = ShowMoney(
                         key: DateTime.now().millisecondsSinceEpoch,
-                        txt: "300 \$",
+                        txt: "${controller.passiveMoney.value.doubleFormatter}\$",
                       );
                       controller.moneyShower.add(showMoney);
                     },
@@ -112,11 +112,12 @@ class GamePage extends HookWidget {
                                 child: boostIcon,
                               ),
                             ),
-                            const SizedBox(width: 16),
+                            const SizedBox(width: 24),
                             Obx(
                               () => Text(
-                                "dps: ${controller.totalProfit.value.doubleFormatter}",
-                                style: const TextStyle(color: moneyCircleColor),
+                                "mps: ${controller.totalProfit.value.doubleFormatter} \$",
+                                style: const TextStyle(
+                                    color: moneyCircleColor, fontWeight: FontWeight.bold),
                               ),
                             ),
                             //MONEY CARD
