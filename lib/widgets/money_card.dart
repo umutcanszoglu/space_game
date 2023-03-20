@@ -38,7 +38,7 @@ class MoneyCard extends StatelessWidget {
                     animation.value.doubleFormatter,
                     style: const TextStyle(
                       color: moneyCircleColor,
-                      fontSize: 22,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,

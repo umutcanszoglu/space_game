@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
 import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/utils/custom_linear_progress_painter.dart';
+import 'package:space_game/utils/extensions.dart';
 import 'package:space_game/widgets/game_drawer.dart';
 import 'package:space_game/widgets/item_card.dart';
 import 'package:space_game/widgets/money_card.dart';
@@ -105,6 +106,12 @@ class GamePage extends HookWidget {
                           ),
                         ),
                         const SizedBox(width: 16),
+                        Obx(
+                          () => Text(
+                            "dps: ${controller.totalProfit.value.doubleFormatter}",
+                            style: const TextStyle(color: moneyCircleColor),
+                          ),
+                        ),
                         //MONEY CARD
                         Expanded(
                           child: Obx(
@@ -206,7 +213,6 @@ class GamePage extends HookWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 50),
                     //MAIN ROCKET
                     Obx(
                       () => Expanded(
@@ -217,7 +223,7 @@ class GamePage extends HookWidget {
                         ),
                       ),
                     ),
-                    //PLANET CHANGERS
+                    //PLANET CHANGE
                     Obx(
                       () => Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

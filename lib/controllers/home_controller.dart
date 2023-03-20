@@ -25,9 +25,14 @@ class HomeController extends GetxController {
   final random1 = 0.obs;
   final random2 = 0.obs;
   final passiveMoney = 1.0.obs;
+  final totalProfit = 0.0.obs;
 
   void increaseMoney() {
     money.value += passiveMoney.value;
+  }
+
+  void getAllProfit() {
+    totalProfit.value = upgrades.fold<double>(0, (a, b) => b.itemProfit * b.itemCount + a);
   }
 
   void passiveIncreaseMoney() {
@@ -96,6 +101,9 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     startTimer();
+    getAllProfit();
+
+    ever(upgrades, (_) => getAllProfit());
 
     ever(money, (_) {
       refreshUpgrades();

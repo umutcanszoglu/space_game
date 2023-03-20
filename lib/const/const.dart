@@ -82,7 +82,7 @@ class PlanetUpgrades {
       image: apple,
       name: "Mighty Apple",
       detail: "this item gets twice apple.",
-      price: 100.0,
+      price: 50.0,
       isAvailable: false,
       rank: 0,
       isActive: true,
