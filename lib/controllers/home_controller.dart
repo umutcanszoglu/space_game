@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'dart:math';
 
@@ -6,6 +7,25 @@ import 'package:get/get.dart';
 import 'package:space_game/const/const.dart';
 
 import '../screens/upgrade_page.dart';
+
+class ShowMoney {
+  final int key;
+  final String txt;
+  double opacity;
+  double x;
+  double y;
+  double vx;
+  double vy;
+
+  ShowMoney({
+    required this.key,
+    required this.txt,
+    this.opacity = 1.0,
+    this.x = 0,
+    this.y = 0,
+    this.vy = 10,
+  }) : vx = Random().nextDouble() * 10 - 5.0;
+}
 
 class HomeController extends GetxController {
   final globalKey = GlobalKey<ScaffoldState>();
@@ -26,6 +46,9 @@ class HomeController extends GetxController {
   final random2 = 0.obs;
   final passiveMoney = 1.0.obs;
   final totalProfit = 0.0.obs;
+
+  final moneyShower = <ShowMoney>[].obs;
+  Timer? moneyTimer;
 
   void increaseMoney() {
     money.value += passiveMoney.value;
@@ -116,6 +139,21 @@ class HomeController extends GetxController {
       syncPrices();
       refreshUpgrades();
     });
+
+    moneyTimer?.cancel();
+    moneyTimer = Timer.periodic(const Duration(milliseconds: 20), (_) {
+      for (final showMoney in moneyShower) {
+        showMoney.opacity -= 0.01;
+        showMoney.x += showMoney.vx;
+        showMoney.y += showMoney.vy;
+        showMoney.vy -= 0.7;
+      }
+      for (int i = 0; i < moneyShower.length; i++) {
+        if (moneyShower[i].opacity < 0) moneyShower.removeAt(i);
+      }
+      moneyShower.refresh();
+    });
+
     super.onInit();
   }
 
