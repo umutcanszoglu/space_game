@@ -47,7 +47,6 @@ class HomeController extends GetxController {
   final random2 = 0.obs;
   final passiveMoney = 1.0.obs;
   final totalProfit = 0.0.obs;
-  final player = AudioPlayer();
   Duration? duration;
 
   final moneyShower = <ShowMoney>[].obs;
@@ -94,7 +93,15 @@ class HomeController extends GetxController {
     money.value += 100;
   }
 
+  void playCoinSound() async {
+    final player = AudioPlayer();
+    await player.setAsset("assets/audios/pickupCoin.wav");
+    await player.play();
+    await player.dispose();
+  }
+
   void resizeRocket() async {
+    playCoinSound();
     rocketSize.value += 100;
     await Future.delayed(const Duration(milliseconds: 100));
     rocketSize.value = 200;
