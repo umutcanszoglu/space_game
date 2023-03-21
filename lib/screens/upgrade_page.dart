@@ -22,11 +22,12 @@ class UpgradePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 7),
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
                     width: 50,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: moneyCircleColor, width: 2),
                       shape: BoxShape.circle,
-                      color: moneyCircleColor,
+                      color: cardTitleColor,
                     ),
                     child: IconButton(onPressed: () => Get.back(), icon: goBackIcon),
                   ),
@@ -54,7 +55,7 @@ class UpgradePage extends StatelessWidget {
                               child: PlanetUpgradeWidget(
                                 onTap: () {
                                   controller.buyPlanetUpgrade(e.key);
-                                  if (e.value.rank < 3) {
+                                  if (e.value.rank < 5) {
                                     e.value.rank += 1;
                                   } else {
                                     e.value.rank = 0;

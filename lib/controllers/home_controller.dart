@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:space_game/const/const.dart';
 
 import '../screens/upgrade_page.dart';
@@ -46,6 +47,8 @@ class HomeController extends GetxController {
   final random2 = 0.obs;
   final passiveMoney = 1.0.obs;
   final totalProfit = 0.0.obs;
+  final player = AudioPlayer();
+  Duration? duration;
 
   final moneyShower = <ShowMoney>[].obs;
   Timer? moneyTimer;
@@ -122,7 +125,7 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     startTimer();
     getAllProfit();
 

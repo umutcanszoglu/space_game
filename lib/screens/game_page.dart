@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
@@ -63,13 +64,14 @@ class GamePage extends HookWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: GestureDetector(
                     onTap: () {
+                      HapticFeedback.vibrate();
                       controller.increaseMoney();
                       controller.resizeRocket();
                       final money = (controller.passiveMoney.value) * 0.005;
                       controller.passiveMoney.value += money;
                       final showMoney = ShowMoney(
                         key: DateTime.now().millisecondsSinceEpoch,
-                        txt: "${controller.passiveMoney.value.doubleFormatter}\$",
+                        txt: "${controller.passiveMoney.value.doubleFormatter} 💰",
                       );
                       controller.moneyShower.add(showMoney);
                     },
@@ -115,7 +117,7 @@ class GamePage extends HookWidget {
                             const SizedBox(width: 24),
                             Obx(
                               () => Text(
-                                "mps: ${controller.totalProfit.value.doubleFormatter} \$",
+                                "mps: ${controller.totalProfit.value.doubleFormatter}",
                                 style: const TextStyle(
                                     color: moneyCircleColor, fontWeight: FontWeight.bold),
                               ),
@@ -330,7 +332,8 @@ class GamePage extends HookWidget {
                       opacity: e.opacity <= 0.0 ? 0 : e.opacity,
                       child: Text(
                         e.txt,
-                        style: const TextStyle(fontSize: 24, color: Colors.white),
+                        style: const TextStyle(
+                            fontSize: 22, color: moneyCircleColor, fontWeight: FontWeight.bold),
                       ),
                     ),
                   )),

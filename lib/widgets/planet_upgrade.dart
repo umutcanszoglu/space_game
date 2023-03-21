@@ -31,9 +31,9 @@ class PlanetUpgradeWidget extends StatelessWidget {
             end: Alignment.bottomLeft,
             colors: isAvailable
                 ? [
-                    const Color(0xff66347F),
-                    const Color(0xff9E4784),
-                    const Color(0xff66347F),
+                    const Color(0xff40394A),
+                    const Color(0xff7ECA9C),
+                    const Color(0xff40394A),
                   ]
                 : [
                     niceBlackColor,

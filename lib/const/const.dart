@@ -13,14 +13,16 @@ const cardTitleColor = Color(0xff628c36);
 const cardButtonColor = Color.fromARGB(255, 163, 150, 15);
 const moneyCircleColor = Color(0xFFD6D6D6);
 List<Color> upgradeColors = [
-  Colors.purple,
-  Colors.blue,
   Colors.yellow,
+  Colors.blue,
+  Colors.red,
   Colors.green,
+  Colors.purple,
+  Colors.orange,
 ];
 
 //Icons
-const goBackIcon = Icon(Icons.arrow_back_ios, size: 30, color: niceBlackColor);
+const goBackIcon = Icon(Icons.arrow_back_ios, size: 30, color: moneyCircleColor);
 const upgradeIcon = Icon(Icons.double_arrow, size: 30, color: moneyCircleColor);
 const rocketIcon = Icon(Icons.rocket_launch_outlined, size: 30, color: moneyCircleColor);
 const boostIcon = Icon(Icons.rocket_launch_rounded, size: 30, color: moneyCircleColor);
