@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_game/const/const.dart';
+import 'package:space_game/screens/game_page.dart';
 import 'package:space_game/services/auth_api.dart';
 
 class UserController extends GetxController {
@@ -12,6 +13,8 @@ class UserController extends GetxController {
   final loginEmail = TextEditingController();
   final loginPassword = TextEditingController();
 
+  final resetEmail = TextEditingController();
+
   @override
   void onClose() {
     fullName.dispose();
@@ -20,32 +23,17 @@ class UserController extends GetxController {
     passwordConfirm.dispose();
     loginEmail.dispose();
     loginPassword.dispose();
+    resetEmail.dispose();
 
     super.onClose();
   }
 
   void addUser() async {
     final result = await AuthApi.createUser(email.text.trim(), password.text.trim());
-    if (result == true) {
-      Get.snackbar(
-        "User Add",
-        "Successful",
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: moneyCircleColor,
-        margin: const EdgeInsets.all(16),
-        backgroundColor: cardTitleColor,
-        duration: const Duration(seconds: 2),
-      );
+    if (result) {
+      snackbar("User Add", "Success", cardTitleColor);
     } else {
-      Get.snackbar(
-        "User Add",
-        "Fail",
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: moneyCircleColor,
-        margin: const EdgeInsets.all(16),
-        backgroundColor: Colors.red,
-        duration: const Duration(seconds: 2),
-      );
+      snackbar("User Add", "Failed", red);
     }
 
     fullName.text = "";
@@ -53,10 +41,38 @@ class UserController extends GetxController {
     password.text = "";
   }
 
-  void signIn() async {
+  Future<bool> signIn() async {
     final result = await AuthApi.signIn(loginEmail.text.trim(), loginPassword.text.trim());
     debugPrint(result.toString());
+    if (result) {
+      Get.off(const GamePage());
+    } else {
+      snackbar("Login", "Failed", red);
+    }
     loginEmail.text = "";
     loginPassword.text = "";
+    return result;
+  }
+
+  void resetPassword() async {
+    final result = await AuthApi.resetPassword(resetEmail.text.trim());
+    if (result) {
+      Get.back();
+      snackbar("Reset Password", "Success", cardTitleColor);
+    } else {
+      snackbar("Reset Password", "Failed", red);
+    }
+  }
+
+  void snackbar(String title, String msg, Color color) {
+    Get.snackbar(
+      title,
+      msg,
+      snackPosition: SnackPosition.BOTTOM,
+      colorText: moneyCircleColor,
+      margin: const EdgeInsets.all(16),
+      backgroundColor: color,
+      duration: const Duration(seconds: 2),
+    );
   }
 }

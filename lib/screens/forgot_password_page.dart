@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:space_game/controllers/user_controller.dart';
 
 import '../const/const.dart';
 import '../widgets/login_button.dart';
@@ -10,6 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.find<UserController>();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
@@ -50,11 +53,16 @@ class ForgotPasswordPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
-                    const MyTextField(icon: emailIcon, hintText: "Email", isObscure: false),
+                    MyTextField(
+                      icon: emailIcon,
+                      hintText: "Email",
+                      isObscure: false,
+                      controller: userController.resetEmail,
+                    ),
                     const SizedBox(height: 8),
                     LoginButton(
                       buttonText: "Continue",
-                      onTap: () {},
+                      onTap: userController.resetPassword,
                     ),
                   ],
                 ),

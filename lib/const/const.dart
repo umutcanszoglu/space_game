@@ -6,6 +6,7 @@ import '../models/upgrade.dart';
 
 //Colors
 const backgroundColor = Color(0xff1E1E1E);
+const red = Colors.red;
 const niceBlackColor = Color(0xff0b0c0b);
 const cardColor = Color(0xff787878);
 const subCardColor = Color.fromARGB(255, 131, 164, 134);

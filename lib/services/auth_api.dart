@@ -42,7 +42,7 @@ class AuthApi {
 
   static Future<bool> resetPassword(String email) async {
     try {
-      final credential = await auth.sendPasswordResetEmail(email: email);
+      await auth.sendPasswordResetEmail(email: email);
       return true;
     } on FirebaseAuthException {
       return false;
