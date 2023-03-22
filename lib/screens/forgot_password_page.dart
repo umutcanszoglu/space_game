@@ -31,6 +31,7 @@ class ForgotPasswordPage extends StatelessWidget {
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  const SizedBox(height: 32),
                   Lottie.asset("assets/lotties/forgot.json"),
                   const SizedBox(height: 32),
                   Container(

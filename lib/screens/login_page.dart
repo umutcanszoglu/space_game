@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
                             Expanded(child: SignButtons(logo: "assets/logos/apple.png")),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
                         const Text(
                           "or",
                           style: TextStyle(color: moneyCircleColor),

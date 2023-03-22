@@ -83,7 +83,6 @@ class GamePage extends HookWidget {
                       children: [
                         //USER ACCOUNT
                         GestureDetector(
-                          //onTapDown: (details) => details.globalPosition.dx,
                           onTap: () => controller.globalKey.currentState?.openDrawer(),
                           child: Container(
                             width: 50,
