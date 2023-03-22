@@ -41,8 +41,6 @@ class HomeController extends GetxController {
   final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
   final buyCount = 1.obs;
-  final activeCount = 0.obs;
-  final listCount = 0.obs;
   final random1 = 0.obs;
   final random2 = 0.obs;
   final passiveMoney = 1.0.obs;

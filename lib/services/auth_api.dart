@@ -8,7 +8,7 @@ class AuthApi {
 
   static Future<bool> createUser(String email, String password) async {
     try {
-      final credential = await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -27,7 +27,7 @@ class AuthApi {
 
   static Future<bool> signIn(String email, String password) async {
     try {
-      final credential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth.signInWithEmailAndPassword(email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

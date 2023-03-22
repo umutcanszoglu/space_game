@@ -18,7 +18,7 @@ class LoginButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(26),
             ),
-            backgroundColor: backgroundColor,
+            backgroundColor: cardTitleColor,
           ),
           child: Text(
             buttonText,

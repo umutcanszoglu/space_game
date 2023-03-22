@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
 import 'package:space_game/controllers/user_controller.dart';
@@ -14,65 +15,69 @@ class RegisterPage extends StatelessWidget {
     final userController = Get.find<UserController>();
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              Lottie.asset("assets/lotties/register.json"),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                width: double.infinity,
-                height: 435,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(32),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      cardTitleColor,
-                      subCardColor,
-                      cardTitleColor,
-                    ],
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text(
-                      "Create Account",
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    MyTextField(
-                      icon: nameIcon,
-                      hintText: "Full Name",
-                      isObscure: false,
-                      controller: userController.fullName,
-                    ),
-                    MyTextField(
-                      icon: emailIcon,
-                      hintText: "Email",
-                      isObscure: false,
-                      controller: userController.email,
-                    ),
-                    MyTextField(
-                      icon: passwordIcon,
-                      hintText: "Create Password",
-                      isObscure: true,
-                      controller: userController.password,
-                    ),
-                    LoginButton(
-                        buttonText: "Register",
-                        onTap: () {
-                          userController.addUser();
-                        }),
-                  ],
-                ),
-              ),
-            ],
+      body: Stack(
+        children: [
+          const LitStarfieldContainer(
+            animated: true,
+            velocity: 0.9,
+            backgroundDecoration: BoxDecoration(
+              color: niceBlackColor,
+            ),
           ),
-        ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  Lottie.asset("assets/lotties/register.json"),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    width: double.infinity,
+                    height: 435,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(32),
+                      color: Colors.transparent,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text(
+                          "Create Account",
+                          style: TextStyle(
+                              color: moneyCircleColor, fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                        MyTextField(
+                          icon: nameIcon,
+                          hintText: "Full Name",
+                          isObscure: false,
+                          controller: userController.fullName,
+                        ),
+                        MyTextField(
+                          icon: emailIcon,
+                          hintText: "Email",
+                          isObscure: false,
+                          controller: userController.email,
+                        ),
+                        MyTextField(
+                          icon: passwordIcon,
+                          hintText: "Create Password",
+                          isObscure: true,
+                          controller: userController.password,
+                        ),
+                        LoginButton(
+                            buttonText: "Register",
+                            onTap: () {
+                              userController.addUser();
+                            }),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

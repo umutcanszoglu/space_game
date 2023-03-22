@@ -19,21 +19,23 @@ class MyTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       obscureText: isObscure,
+      style: const TextStyle(color: moneyCircleColor),
       decoration: InputDecoration(
         iconColor: moneyCircleColor,
         prefixIcon: icon,
-        prefixIconColor: backgroundColor,
+        prefixIconColor: moneyCircleColor,
         hintText: hintText,
+        hintStyle: const TextStyle(color: moneyCircleColor),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: backgroundColor, width: 1),
+          borderSide: const BorderSide(color: moneyCircleColor, width: 1),
           borderRadius: BorderRadius.circular(32),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: backgroundColor, width: 1),
+          borderSide: const BorderSide(color: moneyCircleColor, width: 1),
           borderRadius: BorderRadius.circular(32),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: backgroundColor, width: 1),
+          borderSide: const BorderSide(color: moneyCircleColor, width: 1),
           borderRadius: BorderRadius.circular(32),
         ),
       ),

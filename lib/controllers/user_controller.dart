@@ -31,7 +31,8 @@ class UserController extends GetxController {
   void addUser() async {
     final result = await AuthApi.createUser(email.text.trim(), password.text.trim());
     if (result) {
-      snackbar("User Add", "Success", cardTitleColor);
+      Get.back();
+      snackbar("User Add", "Success", Colors.green);
     } else {
       snackbar("User Add", "Failed", red);
     }
@@ -58,7 +59,7 @@ class UserController extends GetxController {
     final result = await AuthApi.resetPassword(resetEmail.text.trim());
     if (result) {
       Get.back();
-      snackbar("Reset Password", "Success", cardTitleColor);
+      snackbar("Reset Password", "Success", Colors.green);
     } else {
       snackbar("Reset Password", "Failed", red);
     }
@@ -70,7 +71,7 @@ class UserController extends GetxController {
       msg,
       snackPosition: SnackPosition.BOTTOM,
       colorText: moneyCircleColor,
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(20),
       backgroundColor: color,
       duration: const Duration(seconds: 2),
     );
