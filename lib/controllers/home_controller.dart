@@ -95,7 +95,7 @@ class HomeController extends GetxController {
 
   void playCoinSound() async {
     final player = AudioPlayer();
-    await player.setAsset("assets/audios/pickupCoin.wav");
+    await player.setAsset("assets/audios/laser.wav");
     await player.play();
     await player.dispose();
   }
@@ -135,7 +135,6 @@ class HomeController extends GetxController {
   void onInit() async {
     startTimer();
     getAllProfit();
-
     ever(upgrades, (_) => getAllProfit());
 
     ever(money, (_) {

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "718562726395",
+    "project_id": "spacegame-91d18",
+    "storage_bucket": "spacegame-91d18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718562726395:android:86ea511d36b19a5052fb5e",
+        "android_client_info": {
+          "package_name": "com.example.space_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718562726395-89b9hl4kq48d7s6u6f0vfreqn1a3v5qb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANDhNiekd0uIGihaHDyfNkDcFOTpUZ5rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718562726395-89b9hl4kq48d7s6u6f0vfreqn1a3v5qb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

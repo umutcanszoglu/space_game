@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
+import 'package:space_game/controllers/user_controller.dart';
 import 'package:space_game/widgets/login_button.dart';
 import 'package:space_game/widgets/text_field.dart';
 
@@ -9,6 +11,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.find<UserController>();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
@@ -41,13 +44,29 @@ class RegisterPage extends StatelessWidget {
                       "Create Account",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
-                    const MyTextField(icon: nameIcon, hintText: "Full Name", isObscure: false),
-                    const MyTextField(icon: emailIcon, hintText: "Email", isObscure: false),
-                    const MyTextField(
-                        icon: passwordIcon, hintText: "Create Password", isObscure: false),
-                    const MyTextField(
-                        icon: passwordConfirmIcon, hintText: "Password Confirm", isObscure: false),
-                    LoginButton(buttonText: "Register", onTap: () {}),
+                    MyTextField(
+                      icon: nameIcon,
+                      hintText: "Full Name",
+                      isObscure: false,
+                      controller: userController.fullName,
+                    ),
+                    MyTextField(
+                      icon: emailIcon,
+                      hintText: "Email",
+                      isObscure: false,
+                      controller: userController.email,
+                    ),
+                    MyTextField(
+                      icon: passwordIcon,
+                      hintText: "Create Password",
+                      isObscure: true,
+                      controller: userController.password,
+                    ),
+                    LoginButton(
+                        buttonText: "Register",
+                        onTap: () {
+                          userController.addUser();
+                        }),
                   ],
                 ),
               ),

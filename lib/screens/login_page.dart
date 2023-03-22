@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
+import 'package:space_game/controllers/user_controller.dart';
 import 'package:space_game/screens/forgot_password_page.dart';
-import 'package:space_game/screens/game_page.dart';
 import 'package:space_game/screens/register_page.dart';
 import 'package:space_game/widgets/login_button.dart';
 import 'package:space_game/widgets/sign_with_buttons.dart';
@@ -14,6 +14,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.put(UserController());
     return Scaffold(
       backgroundColor: niceBlackColor,
       body: SafeArea(
@@ -44,9 +45,19 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 8),
                     const SizedBox(height: 16),
-                    const MyTextField(icon: emailIcon, hintText: "Email", isObscure: false),
+                    MyTextField(
+                      icon: emailIcon,
+                      hintText: "Email",
+                      isObscure: false,
+                      controller: userController.loginEmail,
+                    ),
                     const SizedBox(height: 16),
-                    const MyTextField(icon: passwordIcon, hintText: "Password", isObscure: true),
+                    MyTextField(
+                      icon: passwordIcon,
+                      hintText: "Password",
+                      isObscure: true,
+                      controller: userController.loginPassword,
+                    ),
                     const SizedBox(height: 8),
                     Align(
                       alignment: Alignment.centerRight,
@@ -61,7 +72,12 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    LoginButton(buttonText: "Sign In", onTap: () => Get.to(const GamePage())),
+                    LoginButton(
+                      buttonText: "Sign In",
+                      onTap: () {
+                        userController.signIn();
+                      },
+                    ),
                     const SizedBox(height: 4),
                     const Divider(color: niceBlackColor, thickness: 1.0),
                     const SizedBox(height: 4),
