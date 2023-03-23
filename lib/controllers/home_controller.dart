@@ -130,6 +130,7 @@ class HomeController extends GetxController {
   }
 
   @override
+  @override
   void onInit() async {
     startTimer();
     getAllProfit();
