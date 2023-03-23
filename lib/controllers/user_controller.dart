@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_game/const/const.dart';
-import 'package:space_game/screens/game_page.dart';
 import 'package:space_game/services/auth_api.dart';
 
 class UserController extends GetxController {
@@ -45,9 +44,7 @@ class UserController extends GetxController {
   Future<bool> signIn() async {
     final result = await AuthApi.signIn(loginEmail.text.trim(), loginPassword.text.trim());
     debugPrint(result.toString());
-    if (result) {
-      Get.off(const GamePage());
-    } else {
+    if (!result) {
       snackbar("Login", "Failed", red);
     }
     loginEmail.text = "";

@@ -12,9 +12,7 @@ class RootWrapper extends GetView<AuthController> {
     return Obx(
       () => controller.isLoading.value
           ? const Center(child: CircularProgressIndicator())
-          : controller.profile.value != null
-              ? const GamePage()
-              : const LoginPage(),
+          : Obx(() => controller.profile.value != null ? const GamePage() : const LoginPage()),
     );
   }
 }

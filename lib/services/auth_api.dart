@@ -48,4 +48,13 @@ class AuthApi {
       return false;
     }
   }
+
+  static Future<bool> signOut() async {
+    try {
+      await auth.signOut();
+      return true;
+    } on FirebaseAuthException {
+      return false;
+    }
+  }
 }

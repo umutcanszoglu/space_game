@@ -31,7 +31,7 @@ const emailIcon = Icon(Icons.mail_outlined);
 const passwordIcon = Icon(Icons.lock_outline_rounded);
 const passwordConfirmIcon = Icon(Icons.lock_open_outlined);
 const nameIcon = Icon(Icons.person_outline_rounded);
-const avatarIcon = Icon(Icons.account_circle_rounded, size: 200, color: cardColor);
+const avatarIcon = Icon(Icons.account_circle_rounded, size: 200, color: cardButtonColor);
 const miniAvatarIcon = Icon(Icons.person_outline_rounded, size: 40, color: moneyCircleColor);
 //Upgrades
 const apple = "assets/upgrades/apple.png";

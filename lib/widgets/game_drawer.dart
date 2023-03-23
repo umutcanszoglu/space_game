@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_game/const/const.dart';
-import 'package:space_game/controllers/home_controller.dart';
+import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/widgets/avatar.dart';
 import 'package:space_game/widgets/drawer_container.dart';
 
@@ -32,14 +32,14 @@ class GameDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Avatar(),
-                const DrawerContainer(text: "Change Avatar"),
-                const DrawerContainer(text: "Full Name"),
                 const DrawerContainer(text: "Current Planet"),
                 const DrawerContainer(text: "Your Progress"),
                 const DrawerContainer(text: "Black Hole"),
                 GestureDetector(
-                  onTap: Get.find<HomeController>().saveGame,
-                  child: const DrawerContainer(text: "Save", isChange: false),
+                  onTap: () {
+                    Get.find<AuthController>().logOut();
+                  },
+                  child: const DrawerContainer(text: "Log Out", isChange: false),
                 ),
               ],
             ),

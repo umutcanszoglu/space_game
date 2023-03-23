@@ -10,6 +10,7 @@ import 'package:space_game/const/const.dart';
 import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/models/game_save.dart';
 import 'package:space_game/services/game_save_api.dart';
+import 'package:space_game/utils/helpers.dart';
 
 import '../screens/upgrade_page.dart';
 
@@ -134,6 +135,13 @@ class HomeController extends GetxController {
   }
 
   @override
+  void onClose() {
+    moneyTimer?.cancel();
+    timer?.cancel();
+    globalKey.currentState?.closeDrawer();
+    super.onClose();
+  }
+
   @override
   void onInit() async {
     startTimer();
@@ -151,6 +159,9 @@ class HomeController extends GetxController {
 
     if (res != null) {
       money.value = res.money;
+      planetChanger.value = res.planetChanger;
+      upgrades.value = res.upgrades;
+      planetUpgrades.value = res.planetUpgrades;
     }
 
     ever(buyCount, (_) {
@@ -254,23 +265,11 @@ class HomeController extends GetxController {
     final result = await GameSaveApi.saveGame(uid, save);
 
     if (result) {
-      snackbar("Game Save", "Success", Colors.green);
+      Helpers.snackbar("Game Save", "Success", Colors.green);
     } else {
-      snackbar("Game Save", "Failed", red);
+      Helpers.snackbar("Game Save", "Failed", red);
     }
 
     EasyLoading.dismiss();
-  }
-
-  void snackbar(String title, String msg, Color color) {
-    Get.snackbar(
-      title,
-      msg,
-      snackPosition: SnackPosition.BOTTOM,
-      colorText: moneyCircleColor,
-      margin: const EdgeInsets.all(20),
-      backgroundColor: color,
-      duration: const Duration(seconds: 2),
-    );
   }
 }
