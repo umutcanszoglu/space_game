@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:space_game/controllers/global_bingings.dart';
 import 'package:space_game/firebase_options.dart';
-import 'package:space_game/screens/login_page.dart';
+import 'package:space_game/widgets/root_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,10 +23,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      initialBinding: GlobalBindings(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: const FlutterEasyLoading(
+        child: RootWrapper(),
+      ),
     );
   }
 }

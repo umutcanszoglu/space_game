@@ -3,9 +3,13 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:space_game/const/const.dart';
+import 'package:space_game/controllers/auth_controller.dart';
+import 'package:space_game/models/game_save.dart';
+import 'package:space_game/services/game_save_api.dart';
 
 import '../screens/upgrade_page.dart';
 
@@ -143,6 +147,12 @@ class HomeController extends GetxController {
       getPurchasableUpgrade();
     });
 
+    final res = await getSave();
+
+    if (res != null) {
+      money.value = res.money;
+    }
+
     ever(buyCount, (_) {
       syncPrices();
       refreshUpgrades();
@@ -163,6 +173,16 @@ class HomeController extends GetxController {
     });
 
     super.onInit();
+  }
+
+  Future<GameSave?> getSave() async {
+    final uid = Get.find<AuthController>().profile.value!.uid;
+
+    EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+    final result = await GameSaveApi.getSave(uid);
+    EasyLoading.dismiss();
+
+    return result;
   }
 
   void getPurchasable() {
@@ -218,5 +238,39 @@ class HomeController extends GetxController {
 
   void passiveProgress() {
     progress.value = min(1, progress.value + 0.00001);
+  }
+
+  void saveGame() async {
+    final save = GameSave(
+      money: money.value,
+      planetChanger: planetChanger.value,
+      upgrades: upgrades,
+      planetUpgrades: planetUpgrades,
+    );
+
+    final uid = Get.find<AuthController>().profile.value!.uid;
+    EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+
+    final result = await GameSaveApi.saveGame(uid, save);
+
+    if (result) {
+      snackbar("Game Save", "Success", Colors.green);
+    } else {
+      snackbar("Game Save", "Failed", red);
+    }
+
+    EasyLoading.dismiss();
+  }
+
+  void snackbar(String title, String msg, Color color) {
+    Get.snackbar(
+      title,
+      msg,
+      snackPosition: SnackPosition.BOTTOM,
+      colorText: moneyCircleColor,
+      margin: const EdgeInsets.all(20),
+      backgroundColor: color,
+      duration: const Duration(seconds: 2),
+    );
   }
 }

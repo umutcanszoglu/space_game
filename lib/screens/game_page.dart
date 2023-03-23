@@ -20,6 +20,7 @@ class GamePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
+
     final tabController = useTabController(initialLength: 3);
 
     void listener() {

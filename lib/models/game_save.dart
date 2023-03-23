@@ -30,12 +30,12 @@ class GameSave {
       money: map['money'] as double,
       planetChanger: map['planetChanger'] as int,
       upgrades: List<Upgrade>.from(
-        (map['upgrades'] as List<int>).map<Upgrade>(
+        (map['upgrades']).map<Upgrade>(
           (x) => Upgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),
       planetUpgrades: List<PlanetUpgrade>.from(
-        (map['planetUpgrades'] as List<int>).map<PlanetUpgrade>(
+        (map['planetUpgrades']).map<PlanetUpgrade>(
           (x) => PlanetUpgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),

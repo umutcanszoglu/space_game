@@ -4,13 +4,13 @@ import 'package:space_game/models/user.dart';
 class Api {
   static final firestore = FirebaseFirestore.instance;
 
-  static void addUser(UserModel user) async {
+  static void addUser(ProfileModel user) async {
     await firestore.collection("Users").add(user.toMap());
   }
 
-  static Future<UserModel> getUser(String mail) async {
+  static Future<ProfileModel> getUser(String mail) async {
     final result = await firestore.collection("Users").where("email", isEqualTo: mail).get();
-    return UserModel.fromMap(result.docs.first.data());
+    return ProfileModel.fromMap(result.docs.first.data());
   }
 
   static void delete() async {

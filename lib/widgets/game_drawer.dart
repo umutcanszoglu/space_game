@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_game/controllers/game_controller.dart';
+import 'package:space_game/const/const.dart';
+import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/widgets/avatar.dart';
 import 'package:space_game/widgets/drawer_container.dart';
-
-import '../const/const.dart';
 
 class GameDrawer extends StatelessWidget {
   const GameDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final gameController = Get.put(GameController());
     return Column(
       children: [
         Expanded(
@@ -40,9 +38,7 @@ class GameDrawer extends StatelessWidget {
                 const DrawerContainer(text: "Your Progress"),
                 const DrawerContainer(text: "Black Hole"),
                 GestureDetector(
-                  onTap: () {
-                    gameController.saveGame();
-                  },
+                  onTap: Get.find<HomeController>().saveGame,
                   child: const DrawerContainer(text: "Save", isChange: false),
                 ),
               ],
