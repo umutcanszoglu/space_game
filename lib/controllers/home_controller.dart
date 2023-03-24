@@ -35,8 +35,6 @@ class ShowMoney {
 }
 
 class HomeController extends GetxController {
-  final globalKey = GlobalKey<ScaffoldState>();
-
   final money = 0.0.obs;
   final rocketSize = 200.obs;
   final progress = 0.0.obs;
@@ -151,7 +149,7 @@ class HomeController extends GetxController {
   void onClose() {
     moneyTimer?.cancel();
     timer?.cancel();
-    globalKey.currentState?.closeDrawer();
+
     super.onClose();
   }
 
@@ -177,6 +175,7 @@ class HomeController extends GetxController {
       planetUpgrades.value = res.planetUpgrades;
     }
 
+    ever(planetChanger, (_) => saveGame());
     ever(buyCount, (_) {
       syncPrices();
       refreshUpgrades();

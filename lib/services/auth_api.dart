@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthApi {
   static final auth = FirebaseAuth.instance;
@@ -50,6 +51,13 @@ class AuthApi {
   }
 
   static Future<bool> signOut() async {
+    try {
+      final googleSignIn = GoogleSignIn();
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.disconnect();
+      }
+    } catch (_) {}
+
     try {
       await auth.signOut();
       return true;

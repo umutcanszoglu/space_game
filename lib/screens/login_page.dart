@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
+import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/controllers/user_controller.dart';
 import 'package:space_game/screens/forgot_password_page.dart';
 import 'package:space_game/screens/register_page.dart';
@@ -10,12 +11,13 @@ import 'package:space_game/widgets/login_button.dart';
 import 'package:space_game/widgets/sign_with_buttons.dart';
 import 'package:space_game/widgets/text_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<AuthController> {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final userController = Get.put(UserController());
+
     return Scaffold(
       backgroundColor: niceBlackColor,
       body: Stack(
@@ -91,18 +93,25 @@ class LoginPage extends StatelessWidget {
                         const SizedBox(height: 16),
                         LoginButton(
                           buttonText: "Sign In",
-                          onTap: () {
-                            userController.signIn();
-                          },
+                          onTap: userController.signIn,
                         ),
                         const SizedBox(height: 4),
                         const Divider(color: moneyCircleColor, thickness: 1.0),
                         const SizedBox(height: 4),
                         Row(
-                          children: const [
-                            Expanded(child: SignButtons(logo: "assets/logos/google.png")),
-                            SizedBox(width: 10),
-                            Expanded(child: SignButtons(logo: "assets/logos/apple.png")),
+                          children: [
+                            Expanded(
+                                child: SignButtons(
+                              logo: "assets/logos/google.png",
+                              onTap: controller.signInWithGoogle,
+                            )),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: SignButtons(
+                                logo: "assets/logos/apple.png",
+                                onTap: () {},
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 8),
