@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -74,20 +75,24 @@ class HomeController extends GetxController {
 
   void buyUpgrade(int key) {
     if (money.value >= upgrades[key].price) {
+      HapticFeedback.vibrate();
       upgrades[key].itemCount += buyCount.value;
       money.value -= upgrades[key].price;
       syncPrices();
       refreshUpgrades();
+      Helpers.snackbar("Item Buy", "Success", Colors.green);
     }
   }
 
   void buyPlanetUpgrade(int key) {
+    HapticFeedback.vibrate();
     if (money.value >= planetUpgrades[key].price) {
       money.value -= planetUpgrades[key].price;
       planetUpgrades[key].price *= 10;
       upgrades[key].itemProfit *= 2;
       refreshPlanetUpgrades();
       refreshUpgrades();
+      Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
     }
   }
 
@@ -248,7 +253,7 @@ class HomeController extends GetxController {
   }
 
   void passiveProgress() {
-    progress.value = min(1, progress.value + 0.00001);
+    progress.value = min(1, progress.value + 0.001);
   }
 
   void saveGame() async {

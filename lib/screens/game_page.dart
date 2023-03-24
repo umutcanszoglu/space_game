@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
+import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/utils/custom_linear_progress_painter.dart';
 import 'package:space_game/utils/extensions.dart';
-import 'package:space_game/widgets/game_drawer.dart';
+import 'package:space_game/widgets/dialog_button.dart';
 import 'package:space_game/widgets/item_card.dart';
 import 'package:space_game/widgets/money_card.dart';
 
@@ -42,14 +43,6 @@ class GamePage extends HookWidget {
     }, const []);
 
     return Scaffold(
-      key: controller.globalKey,
-      drawer: SafeArea(
-        child: Drawer(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-          backgroundColor: backgroundColor,
-          child: const GameDrawer(),
-        ),
-      ),
       backgroundColor: niceBlackColor,
       body: Stack(
         children: [
@@ -82,18 +75,51 @@ class GamePage extends HookWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        //USER ACCOUNT
+                        //Log Out
                         GestureDetector(
-                          onTap: () => controller.globalKey.currentState?.openDrawer(),
+                          onTap: () {
+                            Get.dialog(AlertDialog(
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+                              actionsPadding: const EdgeInsets.only(bottom: 16),
+                              actionsAlignment: MainAxisAlignment.center,
+                              backgroundColor: moneyCircleColor,
+                              title: const Text(
+                                "Sign Out",
+                                textAlign: TextAlign.center,
+                              ),
+                              content: const Text(
+                                "Are you sure?",
+                                textAlign: TextAlign.center,
+                              ),
+                              actions: [
+                                DialogButton(
+                                  buttonText: "sign out",
+                                  onTap: () {
+                                    Get.find<AuthController>().logOut();
+                                    Get.back();
+                                  },
+                                ),
+                                DialogButton(
+                                  buttonText: "go back",
+                                  onTap: Get.back,
+                                ),
+                              ],
+                            ));
+                          },
                           child: Container(
                             width: 50,
                             height: 50,
+                            padding: const EdgeInsets.symmetric(horizontal: 11),
                             decoration: BoxDecoration(
                               border: Border.all(color: moneyCircleColor, width: 2),
                               color: cardTitleColor,
                               shape: BoxShape.circle,
                             ),
-                            child: miniAvatarIcon,
+                            child: const RotatedBox(
+                              quarterTurns: 2,
+                              child: logOutIcon,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -322,25 +348,27 @@ class GamePage extends HookWidget {
               ),
             ),
           ),
-          Obx(() => Stack(
-                children: controller.moneyShower
-                    .map((e) => Positioned(
-                          key: ValueKey(e.key),
-                          left: Get.width / 2 - 20 - e.x,
-                          top: Get.height / 2 - 130 - e.y,
-                          child: Opacity(
-                            opacity: e.opacity <= 0.0 ? 0 : e.opacity,
-                            child: Text(
-                              e.txt,
-                              style: const TextStyle(
-                                  fontSize: 22,
-                                  color: moneyCircleColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ))
-                    .toList(),
-              )),
+          Obx(
+            () => Stack(
+              children: controller.moneyShower
+                  .map(
+                    (e) => Positioned(
+                      key: ValueKey(e.key),
+                      left: Get.width / 2 - 20 - e.x,
+                      top: Get.height / 2 - 130 - e.y,
+                      child: Opacity(
+                        opacity: e.opacity <= 0.0 ? 0 : e.opacity,
+                        child: Text(
+                          e.txt,
+                          style: const TextStyle(
+                              fontSize: 22, color: moneyCircleColor, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
         ],
       ),
     );
