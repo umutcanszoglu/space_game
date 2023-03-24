@@ -109,7 +109,25 @@ class LoginPage extends GetView<AuthController> {
                             Expanded(
                               child: SignButtons(
                                 logo: "assets/logos/apple.png",
-                                onTap: () {},
+                                onTap: () {
+                                  Get.dialog(
+                                    AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(32)),
+                                      actionsPadding: const EdgeInsets.only(bottom: 16),
+                                      actionsAlignment: MainAxisAlignment.center,
+                                      backgroundColor: moneyCircleColor,
+                                      title: SizedBox(
+                                          width: 200,
+                                          height: 200,
+                                          child: Image.asset("assets/logos/apple.png")),
+                                      content: const Text(
+                                        "Coming Soon",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ],
