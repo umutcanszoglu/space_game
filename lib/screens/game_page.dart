@@ -253,7 +253,7 @@ class GamePage extends HookWidget {
                     Obx(
                       () => Expanded(
                         child: AnimatedContainer(
-                          width: 100.0 + controller.rocketSize.value.toDouble(),
+                          width: 80.0 + controller.rocketSize.value.toDouble(),
                           duration: const Duration(milliseconds: 300),
                           child: Lottie.asset("assets/lotties/rocket.json"),
                         ),
