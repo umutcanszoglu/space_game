@@ -52,6 +52,13 @@ class HomeController extends GetxController {
   final passiveMoney = 1.0.obs;
   final totalProfit = 0.0.obs;
   Duration? duration;
+  List<String> waws = [
+    "assets/audios/shoot1.wav",
+    "assets/audios/shoot2.wav",
+    "assets/audios/shoot3.wav",
+    "assets/audios/shoot4.wav",
+    "assets/audios/shoot5.wav",
+  ];
 
   final moneyShower = <ShowMoney>[].obs;
   Timer? moneyTimer;
@@ -102,8 +109,9 @@ class HomeController extends GetxController {
   }
 
   void playCoinSound() async {
+    final random = Random().nextInt(5);
     final player = AudioPlayer();
-    await player.setAsset("assets/audios/laser.wav");
+    await player.setAsset(waws[random]);
     await player.play();
     await player.dispose();
   }

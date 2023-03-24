@@ -94,14 +94,14 @@ class GamePage extends HookWidget {
                               ),
                               actions: [
                                 DialogButton(
-                                  buttonText: "sign out",
+                                  buttonText: "yes",
                                   onTap: () {
                                     Get.find<AuthController>().logOut();
                                     Get.back();
                                   },
                                 ),
                                 DialogButton(
-                                  buttonText: "go back",
+                                  buttonText: "back",
                                   onTap: Get.back,
                                 ),
                               ],
