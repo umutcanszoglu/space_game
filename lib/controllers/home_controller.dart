@@ -284,9 +284,7 @@ class HomeController extends GetxController {
   }
 
   void passiveProgress() {
-    print(passiveValue.value);
     progress.value = min(1, progress.value + passiveValue.value);
-    print(passiveValue.value);
   }
 
   void saveGame() async {

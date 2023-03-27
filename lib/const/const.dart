@@ -15,12 +15,12 @@ const cardTitleColor = Color(0xff628c36);
 const cardButtonColor = Color.fromARGB(255, 163, 150, 15);
 const moneyCircleColor = Color(0xFFD6D6D6);
 List<Color> upgradeColors = [
-  Colors.yellow,
   Colors.blue,
+  Colors.yellow,
   Colors.red,
   Colors.green,
-  Colors.purple,
   Colors.orange,
+  Colors.purple,
 ];
 
 //Icons
