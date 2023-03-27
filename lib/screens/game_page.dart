@@ -122,32 +122,6 @@ class GamePage extends HookWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
-                        //BOOST ICON
-                        GestureDetector(
-                          onTap: () {
-                            controller.boost();
-                            controller.resizeRocket();
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: moneyCircleColor, width: 2),
-                              color: cardTitleColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: boostIcon,
-                          ),
-                        ),
-                        const SizedBox(width: 24),
-                        Obx(
-                          () => Text(
-                            "mps: ${controller.totalProfit.value.doubleFormatter}",
-                            style: const TextStyle(
-                                color: moneyCircleColor, fontWeight: FontWeight.bold),
-                          ),
-                        ),
                         //MONEY CARD
                         Expanded(
                           child: Obx(
@@ -248,6 +222,16 @@ class GamePage extends HookWidget {
                           ),
                         ),
                       ],
+                    ),
+                    Obx(
+                      () => Padding(
+                        padding: const EdgeInsets.only(left: 220.0),
+                        child: Text(
+                          "mps: ${controller.totalProfit.value.doubleFormatter}",
+                          style: const TextStyle(
+                              color: moneyCircleColor, fontWeight: FontWeight.bold, fontSize: 12),
+                        ),
+                      ),
                     ),
                     //MAIN ROCKET
                     Obx(

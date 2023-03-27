@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:space_game/const/const.dart';
 import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/widgets/money_card.dart';
 import 'package:space_game/widgets/planet_upgrade.dart';
+import 'package:space_game/widgets/ship_upgrade.dart';
 
-class UpgradePage extends StatelessWidget {
+class UpgradePage extends HookWidget {
   const UpgradePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
+    final tabController = useTabController(initialLength: 2);
+
+    void listener() {
+      controller.currentTabIndex.value = tabController.index;
+    }
+
+    useEffect(() {
+      tabController.addListener(listener);
+      return () => tabController.removeListener(listener);
+    }, const []);
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
@@ -40,35 +53,85 @@ class UpgradePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 32),
-              Expanded(
-                child: Obx(
-                  () => ListView(
-                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                    children: [
-                      ...controller.planetUpgrades
-                          .asMap()
-                          .entries
-                          .where((element) => element.value.isActive == true)
-                          .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: PlanetUpgradeWidget(
-                                onTap: () {
-                                  controller.buyPlanetUpgrade(e.key);
-                                  if (e.value.rank < 5) {
-                                    e.value.rank += 1;
-                                  } else {
-                                    e.value.rank = 0;
-                                  }
-                                },
-                                isAvailable: e.value.isAvailable,
-                                item: e.value,
-                              ),
-                            ),
-                          ),
-                    ],
+              TabBar(
+                controller: tabController,
+                indicatorColor: moneyCircleColor,
+                tabs: const [
+                  Text(
+                    "Meal",
+                    style: TextStyle(fontSize: 18),
                   ),
-                ),
+                  Text(
+                    "Ship",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+              Obx(
+                () => controller.currentTabIndex.value == 0
+                    ? Expanded(
+                        child: Obx(
+                          () => ListView(
+                            physics: const BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
+                            children: [
+                              ...controller.planetUpgrades
+                                  .asMap()
+                                  .entries
+                                  .where((element) => element.value.isActive == true)
+                                  .map(
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.only(bottom: 8.0),
+                                      child: PlanetUpgradeWidget(
+                                        onTap: () {
+                                          controller.buyPlanetUpgrade(e.key);
+                                          if (e.value.rank < 5) {
+                                            e.value.rank += 1;
+                                          } else {
+                                            e.value.rank = 0;
+                                          }
+                                        },
+                                        isAvailable: e.value.isAvailable,
+                                        item: e.value,
+                                      ),
+                                    ),
+                                  ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Expanded(
+                        child: Obx(
+                          () => ListView(
+                            physics: const BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
+                            children: [
+                              ...controller.shipUpgrades
+                                  .asMap()
+                                  .entries
+                                  .where((element) => element.value.isActive == true)
+                                  .map(
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.only(bottom: 8.0),
+                                      child: ShipUpgradeWidget(
+                                        onTap: () {
+                                          controller.buyShipUpgrade(e.key);
+                                          if (e.value.rank < 5) {
+                                            e.value.rank += 1;
+                                          } else {
+                                            e.value.rank = 0;
+                                          }
+                                        },
+                                        isAvailable: e.value.isAvailable,
+                                        item: e.value,
+                                      ),
+                                    ),
+                                  ),
+                            ],
+                          ),
+                        ),
+                      ),
               ),
             ],
           ),

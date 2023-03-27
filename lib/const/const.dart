@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:space_game/models/ship_upgrade.dart';
 
 import '../models/planet_upgrade.dart';
 import '../models/upgrade.dart';
@@ -48,6 +49,11 @@ const meat = "assets/upgrades/meat.png";
 const burger = "assets/upgrades/burger.png";
 const donut = "assets/upgrades/donut.png";
 const cake = "assets/upgrades/cake.png";
+//Ship Upgrades
+const astronaut = "assets/upgrades/astronaut.png";
+const engine = "assets/upgrades/engine.png";
+const oil = "assets/upgrades/oil.png";
+const robot = "assets/upgrades/robot.png";
 
 //Planets
 class Planets {
@@ -76,6 +82,47 @@ class Planets {
     "assets/planets/s1.gif",
     "assets/planets/g1.gif",
     "assets/planets/blackhole.gif",
+  ];
+}
+
+class ShipUpgrades {
+  static final shipUpgrades = <ShipUpgrade>[
+    ShipUpgrade(
+      image: astronaut,
+      name: "Astronaut Suit",
+      detail: "this item gets you 0.01 progress.",
+      price: 1000000.0,
+      isAvailable: false,
+      rank: 0,
+      isActive: true,
+    ),
+    ShipUpgrade(
+      image: engine,
+      name: "Ship Engine",
+      detail: "this item gets you 0.02 progress.",
+      price: 1000000000.0,
+      isAvailable: false,
+      rank: 0,
+      isActive: false,
+    ),
+    ShipUpgrade(
+      image: oil,
+      name: "Mistic Oil",
+      detail: "this item gets you 0.04 progress.",
+      price: 1000000000000.0,
+      isAvailable: false,
+      rank: 0,
+      isActive: false,
+    ),
+    ShipUpgrade(
+      image: robot,
+      name: "Astronaut Suit",
+      detail: "this item gets you 0.08 progress.",
+      price: 1000000000000000.0,
+      isAvailable: false,
+      rank: 0,
+      isActive: false,
+    ),
   ];
 }
 

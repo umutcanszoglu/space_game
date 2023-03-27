@@ -38,8 +38,10 @@ class HomeController extends GetxController {
   final money = 0.0.obs;
   final rocketSize = 200.obs;
   final progress = 0.0.obs;
+  final passiveValue = 0.001.obs;
   final planetSize = 50.obs;
   final upgrades = Upgrades.upgrades.obs;
+  final shipUpgrades = ShipUpgrades.shipUpgrades.obs;
   final upgradeColorss = upgradeColors;
   final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
   final planetChanger = 0.obs;
@@ -85,13 +87,12 @@ class HomeController extends GetxController {
       money.value -= upgrades[key].price;
       syncPrices();
       refreshUpgrades();
-      Helpers.snackbar("Item Buy", "Success", Colors.green);
     }
   }
 
   void buyPlanetUpgrade(int key) {
-    HapticFeedback.vibrate();
     if (money.value >= planetUpgrades[key].price) {
+      HapticFeedback.vibrate();
       money.value -= planetUpgrades[key].price;
       planetUpgrades[key].price *= 10;
       upgrades[key].itemProfit *= 2;
@@ -101,8 +102,19 @@ class HomeController extends GetxController {
     }
   }
 
+  void buyShipUpgrade(int key) {
+    if (money.value >= shipUpgrades[key].price) {
+      HapticFeedback.vibrate();
+      money.value -= shipUpgrades[key].price;
+      shipUpgrades[key].price *= 10;
+      passiveValue.value *= 2.5;
+      refreshShipUpgrades();
+      Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
+    }
+  }
+
   void boost() {
-    progress.value = min(1, progress.value + 0.1);
+    progress.value = min(1, progress.value + 1);
     money.value += 100;
   }
 
@@ -130,8 +142,8 @@ class HomeController extends GetxController {
       if (progress.value < 1.0) {
         passiveProgress();
         passiveIncreaseMoney();
-      } else if (progress.value >= 0.93) {
-        if (planetChanger.value > 22) {
+      } else if (progress.value >= 0.85) {
+        if (planetChanger.value > 21) {
           planetChanger.value = 0;
         }
         planetChanger.value += 1;
@@ -164,6 +176,7 @@ class HomeController extends GetxController {
       refreshPlanetUpgrades();
       getPurchasable();
       getPurchasableUpgrade();
+      refreshShipUpgrades();
     });
 
     final res = await getSave();
@@ -255,12 +268,25 @@ class HomeController extends GetxController {
     upgrades.refresh();
   }
 
+  void refreshShipUpgrades() {
+    for (final upgrade in shipUpgrades) {
+      if (money.value >= upgrade.price) {
+        upgrade.isAvailable = true;
+      } else {
+        upgrade.isAvailable = false;
+      }
+    }
+    shipUpgrades.refresh();
+  }
+
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.00075);
+    progress.value = min(1, progress.value + 0.1);
   }
 
   void passiveProgress() {
-    progress.value = min(1, progress.value + 0.001);
+    print(passiveValue.value);
+    progress.value = min(1, progress.value + passiveValue.value);
+    print(passiveValue.value);
   }
 
   void saveGame() async {
