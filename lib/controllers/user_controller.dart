@@ -5,10 +5,8 @@ import 'package:space_game/services/auth_api.dart';
 import 'package:space_game/utils/helpers.dart';
 
 class UserController extends GetxController {
-  final fullName = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
-  final passwordConfirm = TextEditingController();
 
   final loginEmail = TextEditingController();
   final loginPassword = TextEditingController();
@@ -17,10 +15,8 @@ class UserController extends GetxController {
 
   @override
   void onClose() {
-    fullName.dispose();
     email.dispose();
     password.dispose();
-    passwordConfirm.dispose();
     loginEmail.dispose();
     loginPassword.dispose();
     resetEmail.dispose();
@@ -37,7 +33,6 @@ class UserController extends GetxController {
       Helpers.snackbar("User Add", "Failed", red);
     }
 
-    fullName.text = "";
     email.text = "";
     password.text = "";
   }

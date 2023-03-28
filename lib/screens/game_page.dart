@@ -9,6 +9,7 @@ import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/controllers/home_controller.dart';
 import 'package:space_game/utils/custom_linear_progress_painter.dart';
 import 'package:space_game/utils/extensions.dart';
+import 'package:space_game/widgets/boost_card.dart';
 import 'package:space_game/widgets/dialog_button.dart';
 import 'package:space_game/widgets/item_card.dart';
 import 'package:space_game/widgets/money_card.dart';
@@ -46,12 +47,37 @@ class GamePage extends HookWidget {
       backgroundColor: niceBlackColor,
       body: Stack(
         children: [
-          const LitStarfieldContainer(
-            animated: true,
-            velocity: 0.9,
-            backgroundDecoration: BoxDecoration(
-              color: niceBlackColor,
-            ),
+          Obx(
+            () => AnimatedCrossFade(
+                firstChild: const LitStarfieldContainer(
+                  animated: true,
+                  velocity: 0.9,
+                  backgroundDecoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        niceBlackColor,
+                        cardTitleColor,
+                        niceBlackColor,
+                      ],
+                    ),
+                  ),
+                ),
+                secondChild: const LitStarfieldContainer(
+                  animated: true,
+                  velocity: 0.9,
+                  backgroundDecoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        niceBlackColor,
+                        niceBlackColor,
+                      ],
+                    ),
+                  ),
+                ),
+                crossFadeState: controller.isBoosted.value
+                    ? CrossFadeState.showFirst
+                    : CrossFadeState.showSecond,
+                duration: const Duration(milliseconds: 900)),
           ),
           SafeArea(
             child: Padding(
@@ -274,8 +300,10 @@ class GamePage extends HookWidget {
                                             child: CustomPaint(
                                               size: Size(constraints.maxWidth, 8),
                                               painter: CustomLinearProgressPainter(
-                                                backgroundColor: niceBlackColor,
-                                                valueColor: cardTitleColor,
+                                                backgroundColor: Colors.transparent,
+                                                valueColor: controller.isBoosted.value
+                                                    ? Colors.orange
+                                                    : cardTitleColor,
                                                 value: animation.value,
                                                 blurRadius: 8,
                                               ),
@@ -334,23 +362,34 @@ class GamePage extends HookWidget {
           ),
           Obx(
             () => Stack(
-              children: controller.moneyShower
-                  .map(
-                    (e) => Positioned(
-                      key: ValueKey(e.key),
-                      left: Get.width / 2 - 20 - e.x,
-                      top: Get.height / 2 - 130 - e.y,
-                      child: Opacity(
-                        opacity: e.opacity <= 0.0 ? 0 : e.opacity,
-                        child: Text(
-                          e.txt,
-                          style: const TextStyle(
-                              fontSize: 22, color: moneyCircleColor, fontWeight: FontWeight.bold),
-                        ),
+              children: [
+                ...controller.moneyShower.map(
+                  (e) => Positioned(
+                    key: ValueKey(e.key),
+                    left: Get.width / 2 - 20 - e.x,
+                    top: Get.height / 2 - 180 - e.y,
+                    child: Opacity(
+                      opacity: e.opacity <= 0.0 ? 0 : e.opacity,
+                      child: Text(
+                        e.txt,
+                        style: const TextStyle(
+                            fontSize: 22, color: moneyCircleColor, fontWeight: FontWeight.bold),
                       ),
                     ),
-                  )
-                  .toList(),
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: const Duration(seconds: 1),
+                  right: controller.progress.value >= 0.01 ? 20 : -100,
+                  top: Get.height * 0.17,
+                  child: BoostCard(
+                    isUsed: controller.isUsed.value,
+                    onTap: () {
+                      controller.ftlMode();
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ],

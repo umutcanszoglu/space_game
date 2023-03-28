@@ -51,6 +51,9 @@ class HomeController extends GetxController {
   final random2 = 0.obs;
   final passiveMoney = 1.0.obs;
   final totalProfit = 0.0.obs;
+  final isBoosted = false.obs;
+  final isUsed = false.obs;
+
   Duration? duration;
   List<String> waws = [
     "assets/audios/shoot1.wav",
@@ -62,6 +65,7 @@ class HomeController extends GetxController {
 
   final moneyShower = <ShowMoney>[].obs;
   Timer? moneyTimer;
+  Timer? boostTimer;
 
   void increaseMoney() {
     money.value += passiveMoney.value;
@@ -161,6 +165,7 @@ class HomeController extends GetxController {
   void onClose() {
     moneyTimer?.cancel();
     timer?.cancel();
+    boostTimer?.cancel();
 
     super.onClose();
   }
@@ -188,7 +193,10 @@ class HomeController extends GetxController {
       planetUpgrades.value = res.planetUpgrades;
     }
 
-    ever(planetChanger, (_) => saveGame());
+    ever(planetChanger, (_) {
+      saveGame();
+      isUsed.value = false;
+    });
     ever(buyCount, (_) {
       syncPrices();
       refreshUpgrades();
@@ -209,6 +217,23 @@ class HomeController extends GetxController {
     });
 
     super.onInit();
+  }
+
+  void ftlMode() async {
+    isBoosted.value = true;
+    await Future.delayed(const Duration(seconds: 1));
+    passiveValue.value = 0.05;
+    money.value *= 5;
+    boostTimer?.cancel();
+    boostTimer = Timer(
+      const Duration(seconds: 5),
+      () async {
+        isBoosted.value = false;
+        passiveValue.value = 0.001;
+        isUsed.value = true;
+        boostTimer?.cancel();
+      },
+    );
   }
 
   Future<GameSave?> getSave() async {
@@ -280,7 +305,7 @@ class HomeController extends GetxController {
   }
 
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.1);
+    progress.value = min(1, progress.value + 0.001);
   }
 
   void passiveProgress() {

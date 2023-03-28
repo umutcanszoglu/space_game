@@ -48,12 +48,6 @@ class RegisterPage extends StatelessWidget {
                               color: moneyCircleColor, fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                         MyTextField(
-                          icon: nameIcon,
-                          hintText: "Full Name",
-                          isObscure: false,
-                          controller: userController.fullName,
-                        ),
-                        MyTextField(
                           icon: emailIcon,
                           hintText: "Email",
                           isObscure: false,

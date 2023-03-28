@@ -40,15 +40,6 @@ class LoginPage extends GetView<AuthController> {
                     padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(32),
-                      // gradient: const LinearGradient(
-                      //   begin: Alignment.topRight,
-                      //   end: Alignment.bottomLeft,
-                      //   colors: [
-                      //     cardTitleColor,
-                      //     subCardColor,
-                      //     cardTitleColor,
-                      //   ],
-                      // ),
                       color: Colors.transparent,
                     ),
                     child: Column(

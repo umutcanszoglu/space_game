@@ -7,6 +7,8 @@ import 'package:space_game/firebase_options.dart';
 import 'package:space_game/widgets/root_wrapper.dart';
 
 void main() async {
+  Paint.enableDithering = true;
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
