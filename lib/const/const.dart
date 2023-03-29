@@ -90,7 +90,7 @@ class ShipUpgrades {
     ShipUpgrade(
       image: astronaut,
       name: "Astronaut Suit",
-      detail: "this item gets you 0.01 progress.",
+      detail: "You'll get %1 progress.",
       price: 1000000.0,
       isAvailable: false,
       rank: 0,
@@ -99,7 +99,7 @@ class ShipUpgrades {
     ShipUpgrade(
       image: engine,
       name: "Ship Engine",
-      detail: "this item gets you 0.02 progress.",
+      detail: "You'll get %2 progress.",
       price: 1000000000.0,
       isAvailable: false,
       rank: 0,
@@ -108,7 +108,7 @@ class ShipUpgrades {
     ShipUpgrade(
       image: oil,
       name: "Mistic Oil",
-      detail: "this item gets you 0.04 progress.",
+      detail: "You'll get %4 progress.",
       price: 1000000000000.0,
       isAvailable: false,
       rank: 0,
@@ -117,7 +117,7 @@ class ShipUpgrades {
     ShipUpgrade(
       image: robot,
       name: "Astronaut Suit",
-      detail: "this item gets you 0.08 progress.",
+      detail: "You'll get %8 progress.",
       price: 1000000000000000.0,
       isAvailable: false,
       rank: 0,
@@ -131,7 +131,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: apple,
       name: "Mighty Apple",
-      detail: "this item gets twice apple.",
+      detail: "You'll get twice apple.",
       price: 50.0,
       isAvailable: false,
       rank: 0,
@@ -140,7 +140,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: banana,
       name: "Perfect Banana",
-      detail: "this item gets twice banana.",
+      detail: "You'll get twice banana.",
       price: 1000.0,
       isAvailable: false,
       rank: 0,
@@ -149,7 +149,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: pepper,
       name: "Hot Chili Pepper",
-      detail: "this item gets twice pepper.",
+      detail: "You'll get twice pepper",
       price: 11000.0,
       isAvailable: false,
       rank: 0,
@@ -158,7 +158,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: garlic,
       name: "Stinky Garlic",
-      detail: "this item gets twice garlic.",
+      detail: "You'll get twice garlic.",
       price: 120000.0,
       isAvailable: false,
       rank: 0,
@@ -167,7 +167,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: mushroom,
       name: "Smurf's Mushroom",
-      detail: "this item gets twice mushroom.",
+      detail: "You'll get twice mushroom.",
       price: 1300000.0,
       isAvailable: false,
       rank: 0,
@@ -176,7 +176,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: corn,
       name: "Big Corn",
-      detail: "this item gets twice corn.",
+      detail: "You'll get twice corn.",
       price: 14000000.0,
       isAvailable: false,
       rank: 0,
@@ -185,7 +185,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: bread,
       name: "Stale Bread",
-      detail: "this item gets twice bread.",
+      detail: "You'll get twice bread.",
       price: 200000000.0,
       isAvailable: false,
       rank: 0,
@@ -194,7 +194,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: croissant,
       name: "French Croissant",
-      detail: "this item gets twice croissant.",
+      detail: "You'll get twice croissant.",
       price: 3300000000.0,
       isAvailable: false,
       rank: 0,
@@ -203,7 +203,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: fish,
       name: "Fresh Fish",
-      detail: "this item gets twice Fish.",
+      detail: "You'll get twice fish.",
       price: 51000000000.0,
       isAvailable: false,
       rank: 0,
@@ -212,7 +212,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: sushi,
       name: "California Roll",
-      detail: "this item gets twice sushi.",
+      detail: "You'll get twice sushi.",
       price: 750000000000.0,
       isAvailable: false,
       rank: 0,
@@ -221,7 +221,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: meat,
       name: "Pure Protein",
-      detail: "this item gets twice meat.",
+      detail: "You'll get twice meat.",
       price: 10000000000000.0,
       isAvailable: false,
       rank: 0,
@@ -230,7 +230,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: burger,
       name: "McDonalds's BigMac",
-      detail: "this item gets twice burger.",
+      detail: "You'll get twice burger.",
       price: 1400000000000000.0,
       isAvailable: false,
       rank: 0,
@@ -239,7 +239,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: donut,
       name: "Breakfast For Cops",
-      detail: "this item gets twice donut.",
+      detail: "You'll get twice donut.",
       price: 17000000000000000.0,
       isAvailable: false,
       rank: 0,
@@ -248,7 +248,7 @@ class PlanetUpgrades {
     PlanetUpgrade(
       image: cake,
       name: "Happy Birthday!!",
-      detail: "this item gets twice cake.",
+      detail: "You'll get twice cake",
       price: 21000000000000000.0,
       isAvailable: false,
       rank: 0,

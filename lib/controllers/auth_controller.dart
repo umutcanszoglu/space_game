@@ -55,10 +55,14 @@ class AuthController extends GetxController {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      if (googleAuth == null) {
+        EasyLoading.dismiss();
 
+        return;
+      }
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
       await _auth.signInWithCredential(credential);

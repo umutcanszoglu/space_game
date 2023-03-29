@@ -21,6 +21,7 @@ class UpgradePage extends HookWidget {
 
     useEffect(() {
       tabController.addListener(listener);
+
       return () => tabController.removeListener(listener);
     }, const []);
 
@@ -42,7 +43,8 @@ class UpgradePage extends HookWidget {
                       shape: BoxShape.circle,
                       color: cardTitleColor,
                     ),
-                    child: IconButton(onPressed: () => Get.back(), icon: goBackIcon),
+                    child: IconButton(
+                        onPressed: () => Get.back(closeOverlays: true), icon: goBackIcon),
                   ),
                   const SizedBox(width: 30),
                   Expanded(

@@ -12,6 +12,7 @@ import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/models/game_save.dart';
 import 'package:space_game/services/game_save_api.dart';
 import 'package:space_game/utils/helpers.dart';
+import 'package:space_game/widgets/dialog_button.dart';
 
 import '../screens/upgrade_page.dart';
 
@@ -95,15 +96,45 @@ class HomeController extends GetxController {
   }
 
   void buyPlanetUpgrade(int key) {
-    if (money.value >= planetUpgrades[key].price) {
-      HapticFeedback.vibrate();
-      money.value -= planetUpgrades[key].price;
-      planetUpgrades[key].price *= 10;
-      upgrades[key].itemProfit *= 2;
-      refreshPlanetUpgrades();
-      refreshUpgrades();
-      Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
-    }
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+        actionsPadding: const EdgeInsets.only(bottom: 16),
+        actionsAlignment: MainAxisAlignment.center,
+        backgroundColor: moneyCircleColor,
+        title: const Text(
+          "Buying this item",
+          textAlign: TextAlign.center,
+        ),
+        content: const Text(
+          "Are you sure?",
+          textAlign: TextAlign.center,
+        ),
+        actions: [
+          DialogButton(
+            buttonText: "yes",
+            onTap: () {
+              if (money.value >= planetUpgrades[key].price) {
+                HapticFeedback.vibrate();
+                money.value -= planetUpgrades[key].price;
+                planetUpgrades[key].price *= 10;
+                upgrades[key].itemProfit *= 2;
+                refreshPlanetUpgrades();
+                refreshUpgrades();
+                Get.back();
+                Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
+              } else {
+                Get.back();
+              }
+            },
+          ),
+          DialogButton(
+            buttonText: "back",
+            onTap: Get.back,
+          ),
+        ],
+      ),
+    );
   }
 
   void buyShipUpgrade(int key) {
@@ -126,6 +157,13 @@ class HomeController extends GetxController {
     final random = Random().nextInt(5);
     final player = AudioPlayer();
     await player.setAsset(waws[random]);
+    await player.play();
+    await player.dispose();
+  }
+
+  void playBoostSound() async {
+    final player = AudioPlayer();
+    await player.setAsset("assets/audios/faster.wav");
     await player.play();
     await player.dispose();
   }
@@ -220,13 +258,14 @@ class HomeController extends GetxController {
   }
 
   void ftlMode() async {
+    playBoostSound();
     isBoosted.value = true;
     await Future.delayed(const Duration(seconds: 1));
     passiveValue.value = 0.05;
     money.value *= 5;
     boostTimer?.cancel();
     boostTimer = Timer(
-      const Duration(seconds: 5),
+      const Duration(seconds: 7),
       () async {
         isBoosted.value = false;
         passiveValue.value = 0.001;
@@ -305,7 +344,7 @@ class HomeController extends GetxController {
   }
 
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.001);
+    progress.value = min(1, progress.value + 0.009);
   }
 
   void passiveProgress() {

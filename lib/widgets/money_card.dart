@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:space_game/controllers/tutorial_controller.dart';
 import 'package:space_game/utils/animated.dart';
 import 'package:space_game/utils/extensions.dart';
 
@@ -25,12 +27,13 @@ class MoneyCard extends StatelessWidget {
                 height: 30,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
-                    border: Border.all(color: moneyCircleColor, width: 2),
-                    color: cardTitleColor,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      bottomLeft: Radius.circular(24),
-                    )),
+                  border: Border.all(color: moneyCircleColor, width: 2),
+                  color: cardTitleColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    bottomLeft: Radius.circular(24),
+                  ),
+                ),
                 child: Animated(
                   value: money,
                   duration: const Duration(milliseconds: 500),
@@ -50,7 +53,7 @@ class MoneyCard extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              padding: const EdgeInsets.only(left: 1),
+              key: Get.find<TutorialController>().targets.first.keyTarget,
               width: 50,
               height: 50,
               decoration: BoxDecoration(

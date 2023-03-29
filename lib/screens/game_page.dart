@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
 import 'package:space_game/const/const.dart';
 import 'package:space_game/controllers/auth_controller.dart';
 import 'package:space_game/controllers/home_controller.dart';
+import 'package:space_game/controllers/tutorial_controller.dart';
 import 'package:space_game/utils/custom_linear_progress_painter.dart';
 import 'package:space_game/utils/extensions.dart';
 import 'package:space_game/widgets/boost_card.dart';
@@ -39,6 +41,14 @@ class GamePage extends HookWidget {
     }
 
     useEffect(() {
+      final box = Hive.box("config");
+      box.delete("tutorial"); //TODO DELETE THIS LINE
+      final status = box.get("tutorial");
+      if (status == null) {
+        Get.find<TutorialController>().showTutorial(context);
+        box.put("tutorial", true);
+      }
+
       tabController.addListener(listener);
       return () => tabController.removeListener(listener);
     }, const []);
@@ -87,7 +97,7 @@ class GamePage extends HookWidget {
                   HapticFeedback.vibrate();
                   controller.increaseMoney();
                   controller.resizeRocket();
-                  final money = (controller.passiveMoney.value) * 0.005;
+                  final money = (controller.passiveMoney.value) * 0.0009;
                   controller.passiveMoney.value += money;
                   final showMoney = ShowMoney(
                     key: DateTime.now().millisecondsSinceEpoch,
@@ -104,34 +114,36 @@ class GamePage extends HookWidget {
                         //Log Out
                         GestureDetector(
                           onTap: () {
-                            Get.dialog(AlertDialog(
-                              shape:
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-                              actionsPadding: const EdgeInsets.only(bottom: 16),
-                              actionsAlignment: MainAxisAlignment.center,
-                              backgroundColor: moneyCircleColor,
-                              title: const Text(
-                                "Sign Out",
-                                textAlign: TextAlign.center,
-                              ),
-                              content: const Text(
-                                "Are you sure?",
-                                textAlign: TextAlign.center,
-                              ),
-                              actions: [
-                                DialogButton(
-                                  buttonText: "yes",
-                                  onTap: () {
-                                    Get.find<AuthController>().logOut();
-                                    Get.back();
-                                  },
+                            Get.dialog(
+                              AlertDialog(
+                                shape:
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+                                actionsPadding: const EdgeInsets.only(bottom: 16),
+                                actionsAlignment: MainAxisAlignment.center,
+                                backgroundColor: moneyCircleColor,
+                                title: const Text(
+                                  "Sign Out",
+                                  textAlign: TextAlign.center,
                                 ),
-                                DialogButton(
-                                  buttonText: "back",
-                                  onTap: Get.back,
+                                content: const Text(
+                                  "Are you sure?",
+                                  textAlign: TextAlign.center,
                                 ),
-                              ],
-                            ));
+                                actions: [
+                                  DialogButton(
+                                    buttonText: "yes",
+                                    onTap: () {
+                                      Get.find<AuthController>().logOut();
+                                      Get.back();
+                                    },
+                                  ),
+                                  DialogButton(
+                                    buttonText: "back",
+                                    onTap: Get.back,
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           child: Container(
                             width: 50,
@@ -251,7 +263,7 @@ class GamePage extends HookWidget {
                     ),
                     Obx(
                       () => Padding(
-                        padding: const EdgeInsets.only(left: 220.0),
+                        padding: const EdgeInsets.only(left: 200.0),
                         child: Text(
                           "mps: ${controller.totalProfit.value.doubleFormatter}",
                           style: const TextStyle(
@@ -380,7 +392,7 @@ class GamePage extends HookWidget {
                 ),
                 AnimatedPositioned(
                   duration: const Duration(seconds: 1),
-                  right: controller.progress.value >= 0.01 ? 20 : -100,
+                  right: controller.progress.value >= 0.5 ? 20 : -100,
                   top: Get.height * 0.17,
                   child: BoostCard(
                     isUsed: controller.isUsed.value,
