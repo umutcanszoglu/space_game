@@ -42,7 +42,6 @@ class GamePage extends HookWidget {
 
     useEffect(() {
       final box = Hive.box("config");
-      box.delete("tutorial"); //TODO DELETE THIS LINE
       final status = box.get("tutorial");
       if (status == null) {
         Get.find<TutorialController>().showTutorial(context);
@@ -263,7 +262,7 @@ class GamePage extends HookWidget {
                     ),
                     Obx(
                       () => Padding(
-                        padding: const EdgeInsets.only(left: 200.0),
+                        padding: const EdgeInsets.only(left: 220.0),
                         child: Text(
                           "mps: ${controller.totalProfit.value.doubleFormatter}",
                           style: const TextStyle(
