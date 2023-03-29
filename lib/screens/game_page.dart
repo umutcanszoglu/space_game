@@ -53,9 +53,9 @@ class GamePage extends HookWidget {
                   animated: true,
                   velocity: 0.9,
                   backgroundDecoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: RadialGradient(
+                      radius: 1,
                       colors: [
-                        niceBlackColor,
                         cardTitleColor,
                         niceBlackColor,
                       ],
