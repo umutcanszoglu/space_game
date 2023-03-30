@@ -125,8 +125,6 @@ class HomeController extends GetxController {
                 refreshUpgrades();
                 Get.back();
 
-                EasyLoading.showToast("Upgrade bought succesfuly !",
-                    dismissOnTap: true, maskType: EasyLoadingMaskType.black);
                 if (planetUpgrades[key].rank < 5) {
                   planetUpgrades[key].rank += 1;
                 } else {
@@ -359,7 +357,7 @@ class HomeController extends GetxController {
   }
 
   void changeProgress() {
-    progress.value = min(1, progress.value + 0.009);
+    progress.value = min(1, progress.value + 0.001);
   }
 
   void passiveProgress() {
