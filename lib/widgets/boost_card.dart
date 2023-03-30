@@ -12,7 +12,7 @@ class BoostCard extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       opacity: isUsed ? 0 : 1,
       child: IgnorePointer(
-        ignoring: isUsed,
+        ignoring: isUsed, //isUsed
         child: GestureDetector(
           onTap: onTap,
           child: Container(

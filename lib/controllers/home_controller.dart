@@ -262,15 +262,20 @@ class HomeController extends GetxController {
   void ftlMode() async {
     playBoostSound();
     isBoosted.value = true;
+    for (var e in upgrades) {
+      e.itemProfit = (e.itemProfit * 5) * e.itemCount;
+    }
     await Future.delayed(const Duration(seconds: 1));
     passiveValue.value = 0.05;
-    money.value *= 5;
     boostTimer?.cancel();
     boostTimer = Timer(
       const Duration(seconds: 7),
       () async {
         isBoosted.value = false;
         passiveValue.value = 0.001;
+        for (var e in upgrades) {
+          e.itemProfit = (e.itemProfit / 5) * e.itemCount;
+        }
         isUsed.value = true;
         boostTimer?.cancel();
       },
