@@ -26,7 +26,7 @@ List<Color> upgradeColors = [
 //Icons
 const goBackIcon = Icon(Icons.arrow_back_ios, size: 30, color: moneyCircleColor);
 const upgradeIcon = Icon(Icons.double_arrow, size: 30, color: moneyCircleColor);
-const rocketIcon = Icon(Icons.rocket_launch_outlined, size: 40, color: cardTitleColor);
+const rocketIcon = Icon(Icons.rocket_launch_outlined, size: 40, color: moneyCircleColor);
 const boostIcon = Icon(Icons.rocket_launch, size: 40, color: cardTitleColor);
 const emailIcon = Icon(Icons.mail_outlined);
 const passwordIcon = Icon(Icons.lock_outline_rounded);

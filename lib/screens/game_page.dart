@@ -395,7 +395,7 @@ class GamePage extends HookWidget {
                 AnimatedPositioned(
                   duration: const Duration(seconds: 1),
                   right: controller.progress.value >= 0.01 ? 20 : -100,
-                  top: Get.height * 0.17,
+                  top: Get.height * 0.20,
                   child: BoostCard(
                     isUsed: controller.isUsed.value,
                     onTap: () {

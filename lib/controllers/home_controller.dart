@@ -120,12 +120,18 @@ class HomeController extends GetxController {
                 money.value -= planetUpgrades[key].price;
                 planetUpgrades[key].price *= 10;
                 upgrades[key].itemProfit *= 2;
+
                 refreshPlanetUpgrades();
                 refreshUpgrades();
                 Get.back();
+
                 EasyLoading.showToast("Upgrade bought succesfuly !",
                     dismissOnTap: true, maskType: EasyLoadingMaskType.black);
-                //Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
+                if (planetUpgrades[key].rank < 5) {
+                  planetUpgrades[key].rank += 1;
+                } else {
+                  planetUpgrades[key].rank = 0;
+                }
               } else {
                 Get.back();
               }
@@ -265,7 +271,7 @@ class HomeController extends GetxController {
     playBoostSound();
     isBoosted.value = true;
     for (var e in upgrades) {
-      e.itemProfit = (e.itemProfit * 5) * e.itemCount;
+      e.itemProfit = (e.itemProfit * 5);
     }
     await Future.delayed(const Duration(seconds: 1));
     passiveValue.value = 0.05;
@@ -276,7 +282,7 @@ class HomeController extends GetxController {
         isBoosted.value = false;
         passiveValue.value = 0.001;
         for (var e in upgrades) {
-          e.itemProfit = (e.itemProfit / 5) * e.itemCount;
+          e.itemProfit = (e.itemProfit / 5);
         }
         isUsed.value = true;
         boostTimer?.cancel();

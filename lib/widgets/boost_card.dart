@@ -20,8 +20,8 @@ class BoostCard extends StatelessWidget {
             height: 70,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: moneyCircleColor,
-                border: Border.all(color: cardTitleColor, width: 3)),
+                color: cardTitleColor,
+                border: Border.all(color: moneyCircleColor, width: 3)),
             child: rocketIcon,
           ),
         ),
