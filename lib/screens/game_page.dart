@@ -96,7 +96,7 @@ class GamePage extends HookWidget {
                   HapticFeedback.vibrate();
                   controller.increaseMoney();
                   controller.resizeRocket();
-                  final money = (controller.passiveMoney.value) * 0.0009;
+                  final money = (controller.passiveMoney.value) * 0.0004;
                   controller.passiveMoney.value += money;
                   final showMoney = ShowMoney(
                     key: DateTime.now().millisecondsSinceEpoch,
@@ -394,7 +394,7 @@ class GamePage extends HookWidget {
                 ),
                 AnimatedPositioned(
                   duration: const Duration(seconds: 1),
-                  right: controller.progress.value >= 0.01 ? 20 : -100,
+                  right: controller.progress.value >= 0.5 ? 20 : -100,
                   top: Get.height * 0.20,
                   child: BoostCard(
                     isUsed: controller.isUsed.value,
