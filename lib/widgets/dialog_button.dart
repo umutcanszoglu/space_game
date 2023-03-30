@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:space_game/const/const.dart';
 
 class DialogButton extends StatelessWidget {
-  const DialogButton({super.key, required this.buttonText, required this.onTap});
+  const DialogButton(
+      {super.key, required this.buttonText, required this.onTap, required this.color});
   final String buttonText;
   final Function() onTap;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DialogButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(26),
             ),
-            backgroundColor: cardTitleColor,
+            backgroundColor: color,
           ),
           child: Text(
             buttonText,

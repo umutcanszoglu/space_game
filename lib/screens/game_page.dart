@@ -130,14 +130,16 @@ class GamePage extends HookWidget {
                                 ),
                                 actions: [
                                   DialogButton(
-                                    buttonText: "yes",
+                                    color: red,
+                                    buttonText: "Yes",
                                     onTap: () {
                                       Get.find<AuthController>().logOut();
                                       Get.back();
                                     },
                                   ),
                                   DialogButton(
-                                    buttonText: "back",
+                                    color: cardTitleColor,
+                                    buttonText: "Back",
                                     onTap: Get.back,
                                   ),
                                 ],
@@ -398,6 +400,7 @@ class GamePage extends HookWidget {
                     isUsed: controller.isUsed.value,
                     onTap: () {
                       controller.ftlMode();
+                      controller.isUsed.value = true;
                     },
                   ),
                 ),

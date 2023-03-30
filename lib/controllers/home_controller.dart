@@ -112,7 +112,8 @@ class HomeController extends GetxController {
         ),
         actions: [
           DialogButton(
-            buttonText: "yes",
+            color: cardTitleColor,
+            buttonText: "Yes",
             onTap: () {
               if (money.value >= planetUpgrades[key].price) {
                 HapticFeedback.vibrate();
@@ -131,7 +132,8 @@ class HomeController extends GetxController {
             },
           ),
           DialogButton(
-            buttonText: "back",
+            color: red,
+            buttonText: "Back",
             onTap: Get.back,
           ),
         ],
