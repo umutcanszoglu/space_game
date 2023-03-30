@@ -122,7 +122,9 @@ class HomeController extends GetxController {
                 refreshPlanetUpgrades();
                 refreshUpgrades();
                 Get.back();
-                Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
+                EasyLoading.showToast("Upgrade bought succesfuly !",
+                    dismissOnTap: true, maskType: EasyLoadingMaskType.black);
+                //Helpers.snackbar("Upgrade Buy", "Success", Colors.green);
               } else {
                 Get.back();
               }

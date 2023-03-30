@@ -164,6 +164,7 @@ class GamePage extends HookWidget {
                           child: Obx(
                             () => MoneyCard(
                               money: controller.money.value,
+                              onGamePage: true,
                               onTap: () {
                                 Get.bottomSheet(
                                   AnimatedContainer(

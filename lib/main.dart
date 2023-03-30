@@ -28,14 +28,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Cosmic Clicker',
       initialBinding: GlobalBindings(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const FlutterEasyLoading(
-        child: RootWrapper(),
-      ),
+      builder: (context, child) => FlutterEasyLoading(child: child),
+      home: const RootWrapper(),
     );
   }
 }

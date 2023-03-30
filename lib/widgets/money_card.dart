@@ -6,9 +6,10 @@ import 'package:space_game/utils/extensions.dart';
 
 import '../const/const.dart';
 
-class MoneyCard extends StatelessWidget {
-  const MoneyCard({super.key, required this.money, required this.onTap});
+class MoneyCard extends GetView<TutorialController> {
+  const MoneyCard({super.key, required this.money, required this.onTap, this.onGamePage = false});
   final double money;
+  final bool onGamePage;
   final Function() onTap;
 
   @override
@@ -53,9 +54,9 @@ class MoneyCard extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              key: Get.find<TutorialController>().targets.first.keyTarget,
               width: 50,
               height: 50,
+              key: onGamePage ? controller.key : null,
               decoration: BoxDecoration(
                 border: Border.all(color: moneyCircleColor, width: 2),
                 boxShadow: const [

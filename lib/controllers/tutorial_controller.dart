@@ -8,6 +8,8 @@ class TutorialController extends GetxController {
   late TutorialCoachMark tutorialCoachMark;
   final targets = <TargetFocus>[];
 
+  final key = GlobalKey();
+
   @override
   void onInit() {
     createTutorial();
@@ -34,7 +36,7 @@ class TutorialController extends GetxController {
         color: niceBlackColor,
         enableOverlayTab: true,
         identify: "market",
-        keyTarget: GlobalKey(),
+        keyTarget: key,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,

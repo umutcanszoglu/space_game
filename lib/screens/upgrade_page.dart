@@ -13,7 +13,8 @@ class UpgradePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-    final tabController = useTabController(initialLength: 2);
+    final tabController =
+        useTabController(initialLength: 2, initialIndex: controller.currentTabIndex.value);
 
     void listener() {
       controller.currentTabIndex.value = tabController.index;
