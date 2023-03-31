@@ -2,17 +2,17 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:cosmic_clicker/const/const.dart';
 import 'package:cosmic_clicker/controllers/auth_controller.dart';
 import 'package:cosmic_clicker/models/game_save.dart';
 import 'package:cosmic_clicker/services/game_save_api.dart';
 import 'package:cosmic_clicker/utils/helpers.dart';
 import 'package:cosmic_clicker/widgets/dialog_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../screens/upgrade_page.dart';
 
@@ -385,6 +385,7 @@ class HomeController extends GetxController {
       planetChanger: planetChanger.value,
       upgrades: upgrades,
       planetUpgrades: planetUpgrades,
+      shipUpgrades: shipUpgrades,
     );
 
     final uid = Get.find<AuthController>().profile.value!.uid;

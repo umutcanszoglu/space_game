@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cosmic_clicker/models/planet_upgrade.dart';
+import 'package:cosmic_clicker/models/ship_upgrade.dart';
 import 'package:cosmic_clicker/models/upgrade.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
@@ -9,11 +10,13 @@ class GameSave {
   final int planetChanger;
   final List<Upgrade> upgrades;
   final List<PlanetUpgrade> planetUpgrades;
+  final List<ShipUpgrade> shipUpgrades;
   GameSave({
     required this.money,
     required this.planetChanger,
     required this.upgrades,
     required this.planetUpgrades,
+    required this.shipUpgrades,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,6 +25,7 @@ class GameSave {
       'planetChanger': planetChanger,
       'upgrades': upgrades.map((x) => x.toMap()).toList(),
       'planetUpgrades': planetUpgrades.map((x) => x.toMap()).toList(),
+      'shipUpgrades': shipUpgrades.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -30,13 +34,18 @@ class GameSave {
       money: map['money'] as double,
       planetChanger: map['planetChanger'] as int,
       upgrades: List<Upgrade>.from(
-        (map['upgrades']).map<Upgrade>(
+        (map['upgrades'] as List<int>).map<Upgrade>(
           (x) => Upgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),
       planetUpgrades: List<PlanetUpgrade>.from(
-        (map['planetUpgrades']).map<PlanetUpgrade>(
+        (map['planetUpgrades'] as List<int>).map<PlanetUpgrade>(
           (x) => PlanetUpgrade.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      shipUpgrades: List<ShipUpgrade>.from(
+        (map['shipUpgrades'] as List<int>).map<ShipUpgrade>(
+          (x) => ShipUpgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),
     );
