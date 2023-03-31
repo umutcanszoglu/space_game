@@ -34,17 +34,17 @@ class GameSave {
       money: map['money'] as double,
       planetChanger: map['planetChanger'] as int,
       upgrades: List<Upgrade>.from(
-        (map['upgrades'] as List<int>).map<Upgrade>(
+        (map['upgrades'] as List<dynamic>).map<Upgrade>(
           (x) => Upgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),
       planetUpgrades: List<PlanetUpgrade>.from(
-        (map['planetUpgrades'] as List<int>).map<PlanetUpgrade>(
+        (map['planetUpgrades'] as List<dynamic>).map<PlanetUpgrade>(
           (x) => PlanetUpgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),
       shipUpgrades: List<ShipUpgrade>.from(
-        (map['shipUpgrades'] as List<int>).map<ShipUpgrade>(
+        (map['shipUpgrades'] as List<dynamic>).map<ShipUpgrade>(
           (x) => ShipUpgrade.fromMap(x as Map<String, dynamic>),
         ),
       ),

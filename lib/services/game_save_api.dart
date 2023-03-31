@@ -18,7 +18,7 @@ class GameSaveApi {
       final result = await firestore.collection("saves").doc(uid).get();
       return GameSave.fromMap(result.data()!);
     } catch (_) {
-      //print(_);
+      print(_);
       return null;
     }
   }
