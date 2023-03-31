@@ -267,6 +267,7 @@ class HomeController extends GetxController {
       planetChanger.value = res.planetChanger;
       upgrades.value = res.upgrades;
       planetUpgrades.value = res.planetUpgrades;
+      shipUpgrades.value = ShipUpgrades.shipUpgrades;
     } else {
       resetSave();
     }
