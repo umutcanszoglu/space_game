@@ -1,4 +1,4 @@
-package com.umutcanszoglu.cosmic_clicker
+package com.umutcanszoglu.cosmic
 
 import io.flutter.embedding.android.FlutterActivity
 

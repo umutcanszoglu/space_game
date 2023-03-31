@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "718562726395",
-    "project_id": "spacegame-91d18",
-    "storage_bucket": "spacegame-91d18.appspot.com"
+    "project_number": "897530755430",
+    "project_id": "cosmic-clicker",
+    "storage_bucket": "cosmic-clicker.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:718562726395:android:86ea511d36b19a5052fb5e",
+        "mobilesdk_app_id": "1:897530755430:android:4208c9653ee6b44d89b0a7",
         "android_client_info": {
-          "package_name": "com.umutcanszoglu.cosmic_clicker"
+          "package_name": "com.umutcanszoglu.cosmic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "718562726395-89b9hl4kq48d7s6u6f0vfreqn1a3v5qb.apps.googleusercontent.com",
+          "client_id": "897530755430-seih0ka8bnb6c0ler5cdor0olavf9eos.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANDhNiekd0uIGihaHDyfNkDcFOTpUZ5rI"
+          "current_key": "AIzaSyDQa5DGxwSV4HWPRQh25ZGfxSdGiCFj2IM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "718562726395-89b9hl4kq48d7s6u6f0vfreqn1a3v5qb.apps.googleusercontent.com",
+              "client_id": "897530755430-seih0ka8bnb6c0ler5cdor0olavf9eos.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

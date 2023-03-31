@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>718562726395-o072ei722eev1i08bn4t115sds7faqg8.apps.googleusercontent.com</string>
+	<string>897530755430-22ld6td0h4jl3893di6p8ofpiua1f4c2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.718562726395-o072ei722eev1i08bn4t115sds7faqg8</string>
+	<string>com.googleusercontent.apps.897530755430-22ld6td0h4jl3893di6p8ofpiua1f4c2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBExpPWOTjwjjb5qo0Qoq-yIbZK08pDOlc</string>
+	<string>AIzaSyALx4TIvmfMOn8c6bK9uuGNPQNn7pFWPIo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>718562726395</string>
+	<string>897530755430</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.umutcanszoglu.cosmic_clicker</string>
+	<string>com.umutcanszoglu.cosmic</string>
 	<key>PROJECT_ID</key>
-	<string>spacegame-91d18</string>
+	<string>cosmic-clicker</string>
 	<key>STORAGE_BUCKET</key>
-	<string>spacegame-91d18.appspot.com</string>
+	<string>cosmic-clicker.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:718562726395:ios:fca0df63c3eec86252fb5e</string>
+	<string>1:897530755430:ios:debbfc9e14715c6789b0a7</string>
 </dict>
 </plist>

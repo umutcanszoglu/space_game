@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.umutcanszoglu.cosmic_clicker">
+    package="com.umutcanszoglu.cosmic">
    <application
         android:label="Cosmic Clicker"
         android:name="${applicationName}"
