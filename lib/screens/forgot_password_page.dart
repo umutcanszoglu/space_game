@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
-import 'package:space_game/controllers/user_controller.dart';
+import 'package:cosmic_clicker/controllers/user_controller.dart';
 
 import '../const/const.dart';
 import '../widgets/login_button.dart';

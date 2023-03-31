@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:space_game/const/const.dart';
+import 'package:cosmic_clicker/const/const.dart';
 
 class BoostCard extends StatelessWidget {
   const BoostCard({super.key, required this.onTap, required this.isUsed});

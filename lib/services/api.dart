@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:space_game/models/user.dart';
+import 'package:cosmic_clicker/models/user.dart';
 
 class Api {
   static final firestore = FirebaseFirestore.instance;

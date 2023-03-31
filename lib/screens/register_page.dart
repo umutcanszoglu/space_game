@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
-import 'package:space_game/const/const.dart';
-import 'package:space_game/controllers/user_controller.dart';
-import 'package:space_game/widgets/login_button.dart';
-import 'package:space_game/widgets/text_field.dart';
+import 'package:cosmic_clicker/const/const.dart';
+import 'package:cosmic_clicker/controllers/user_controller.dart';
+import 'package:cosmic_clicker/widgets/login_button.dart';
+import 'package:cosmic_clicker/widgets/text_field.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

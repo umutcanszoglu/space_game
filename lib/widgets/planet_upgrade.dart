@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_game/controllers/home_controller.dart';
-import 'package:space_game/utils/animated.dart';
-import 'package:space_game/utils/extensions.dart';
+import 'package:cosmic_clicker/controllers/home_controller.dart';
+import 'package:cosmic_clicker/utils/animated.dart';
+import 'package:cosmic_clicker/utils/extensions.dart';
 
 import '../const/const.dart';
 import '../models/planet_upgrade.dart';

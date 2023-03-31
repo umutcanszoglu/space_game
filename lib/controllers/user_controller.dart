@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_game/const/const.dart';
-import 'package:space_game/services/auth_api.dart';
-import 'package:space_game/utils/helpers.dart';
+import 'package:cosmic_clicker/const/const.dart';
+import 'package:cosmic_clicker/services/auth_api.dart';
+import 'package:cosmic_clicker/utils/helpers.dart';
 
 class UserController extends GetxController {
   final email = TextEditingController();

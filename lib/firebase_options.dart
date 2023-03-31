@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     projectId: 'spacegame-91d18',
     storageBucket: 'spacegame-91d18.appspot.com',
     iosClientId: '718562726395-o072ei722eev1i08bn4t115sds7faqg8.apps.googleusercontent.com',
-    iosBundleId: 'com.umutcanszoglu.space_game',
+    iosBundleId: 'com.umutcanszoglu.cosmic_clicker',
   );
 }

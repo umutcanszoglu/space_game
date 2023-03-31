@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:space_game/controllers/auth_controller.dart';
-import 'package:space_game/controllers/tutorial_controller.dart';
+import 'package:cosmic_clicker/controllers/auth_controller.dart';
+import 'package:cosmic_clicker/controllers/tutorial_controller.dart';
 
 class GlobalBindings extends Bindings {
   @override

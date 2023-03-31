@@ -7,12 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:space_game/const/const.dart';
-import 'package:space_game/controllers/auth_controller.dart';
-import 'package:space_game/models/game_save.dart';
-import 'package:space_game/services/game_save_api.dart';
-import 'package:space_game/utils/helpers.dart';
-import 'package:space_game/widgets/dialog_button.dart';
+import 'package:cosmic_clicker/const/const.dart';
+import 'package:cosmic_clicker/controllers/auth_controller.dart';
+import 'package:cosmic_clicker/models/game_save.dart';
+import 'package:cosmic_clicker/services/game_save_api.dart';
+import 'package:cosmic_clicker/utils/helpers.dart';
+import 'package:cosmic_clicker/widgets/dialog_button.dart';
 
 import '../screens/upgrade_page.dart';
 

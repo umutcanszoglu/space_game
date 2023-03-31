@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_game/controllers/auth_controller.dart';
-import 'package:space_game/screens/game_page.dart';
-import 'package:space_game/screens/login_page.dart';
+import 'package:cosmic_clicker/controllers/auth_controller.dart';
+import 'package:cosmic_clicker/screens/game_page.dart';
+import 'package:cosmic_clicker/screens/login_page.dart';
 
 class RootWrapper extends GetView<AuthController> {
   const RootWrapper({super.key});

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:space_game/controllers/global_bingings.dart';
-import 'package:space_game/firebase_options.dart';
-import 'package:space_game/widgets/root_wrapper.dart';
+import 'package:cosmic_clicker/controllers/global_bingings.dart';
+import 'package:cosmic_clicker/firebase_options.dart';
+import 'package:cosmic_clicker/widgets/root_wrapper.dart';
 
 void main() async {
   Paint.enableDithering = true;

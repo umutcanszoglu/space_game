@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:space_game/const/const.dart';
+import 'package:cosmic_clicker/const/const.dart';
 
 class SignButtons extends StatelessWidget {
   const SignButtons({super.key, required this.logo, required this.onTap});

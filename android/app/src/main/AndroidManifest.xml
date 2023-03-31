@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.umutcanszoglu.space_game">
+    package="com.umutcanszoglu.cosmic_clicker">
    <application
-        android:label="space_game"
+        android:label="cosmic_clicker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

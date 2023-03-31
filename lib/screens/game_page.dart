@@ -5,16 +5,16 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:lit_starfield/view/lit_starfield_container.dart';
 import 'package:lottie/lottie.dart';
-import 'package:space_game/const/const.dart';
-import 'package:space_game/controllers/auth_controller.dart';
-import 'package:space_game/controllers/home_controller.dart';
-import 'package:space_game/controllers/tutorial_controller.dart';
-import 'package:space_game/utils/custom_linear_progress_painter.dart';
-import 'package:space_game/utils/extensions.dart';
-import 'package:space_game/widgets/boost_card.dart';
-import 'package:space_game/widgets/dialog_button.dart';
-import 'package:space_game/widgets/item_card.dart';
-import 'package:space_game/widgets/money_card.dart';
+import 'package:cosmic_clicker/const/const.dart';
+import 'package:cosmic_clicker/controllers/auth_controller.dart';
+import 'package:cosmic_clicker/controllers/home_controller.dart';
+import 'package:cosmic_clicker/controllers/tutorial_controller.dart';
+import 'package:cosmic_clicker/utils/custom_linear_progress_painter.dart';
+import 'package:cosmic_clicker/utils/extensions.dart';
+import 'package:cosmic_clicker/widgets/boost_card.dart';
+import 'package:cosmic_clicker/widgets/dialog_button.dart';
+import 'package:cosmic_clicker/widgets/item_card.dart';
+import 'package:cosmic_clicker/widgets/money_card.dart';
 
 import '../utils/animated.dart';
 

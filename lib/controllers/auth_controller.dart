@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:space_game/controllers/home_controller.dart';
-import 'package:space_game/models/user.dart';
-import 'package:space_game/services/auth_api.dart';
-import 'package:space_game/utils/helpers.dart';
+import 'package:cosmic_clicker/controllers/home_controller.dart';
+import 'package:cosmic_clicker/models/user.dart';
+import 'package:cosmic_clicker/services/auth_api.dart';
+import 'package:cosmic_clicker/utils/helpers.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
