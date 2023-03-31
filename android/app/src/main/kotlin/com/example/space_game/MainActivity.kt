@@ -1,4 +1,4 @@
-package com.example.space_game
+package com.umutcanszoglu.space_game
 
 import io.flutter.embedding.android.FlutterActivity
 

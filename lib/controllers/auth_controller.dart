@@ -24,6 +24,7 @@ class AuthController extends GetxController {
         profile.value = null;
         isLoading.value = false;
         profile.refresh();
+        Get.delete<HomeController>();
         return;
       }
 

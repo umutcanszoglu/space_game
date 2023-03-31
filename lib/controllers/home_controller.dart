@@ -37,15 +37,16 @@ class ShowMoney {
 
 class HomeController extends GetxController {
   final money = 0.0.obs;
+  final planetChanger = 0.obs;
+  final upgrades = Upgrades.upgrades.obs;
+  final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
+  final shipUpgrades = ShipUpgrades.shipUpgrades.obs;
+
   final rocketSize = 200.obs;
   final progress = 0.0.obs;
   final passiveValue = 0.001.obs;
   final planetSize = 50.obs;
-  final upgrades = Upgrades.upgrades.obs;
-  final shipUpgrades = ShipUpgrades.shipUpgrades.obs;
   final upgradeColorss = upgradeColors;
-  final planetUpgrades = PlanetUpgrades.planetUpgrades.obs;
-  final planetChanger = 0.obs;
   final currentTabIndex = 0.obs;
   final buyCount = 1.obs;
   final random1 = 0.obs;
@@ -230,14 +231,7 @@ class HomeController extends GetxController {
       refreshShipUpgrades();
     });
 
-    final res = await getSave();
-
-    if (res != null) {
-      money.value = res.money;
-      planetChanger.value = res.planetChanger;
-      upgrades.value = res.upgrades;
-      planetUpgrades.value = res.planetUpgrades;
-    }
+    await fetchSave();
 
     ever(planetChanger, (_) {
       saveGame();
@@ -263,6 +257,27 @@ class HomeController extends GetxController {
     });
 
     super.onInit();
+  }
+
+  Future<void> fetchSave() async {
+    final res = await getSave();
+
+    if (res != null) {
+      money.value = res.money;
+      planetChanger.value = res.planetChanger;
+      upgrades.value = res.upgrades;
+      planetUpgrades.value = res.planetUpgrades;
+    } else {
+      resetSave();
+    }
+  }
+
+  void resetSave() {
+    money.value = 0.0;
+    planetChanger.value = 0;
+    upgrades.value = Upgrades.upgrades;
+    planetUpgrades.value = PlanetUpgrades.planetUpgrades;
+    shipUpgrades.value = ShipUpgrades.shipUpgrades;
   }
 
   void ftlMode() async {
